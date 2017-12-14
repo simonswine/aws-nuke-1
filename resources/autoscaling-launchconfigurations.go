@@ -1,10 +1,28 @@
 package resources
 
-import "github.com/aws/aws-sdk-go/service/autoscaling"
+import (
+	"github.com/aws/aws-sdk-go/aws/session"
+	"github.com/aws/aws-sdk-go/service/autoscaling"
+)
 
-func (n *AutoScalingNuke) ListLaunchConfigurations() ([]Resource, error) {
+func init() {
+	register("LaunchConfiguration", ListLaunchConfigurations)
+}
+
+type LaunchConfigurationLister struct{}
+
+func List(s *session) ([]Resource, error) {
+}
+
+func Name() string {
+	return "LaunchConfiguration"
+}
+
+func ListLaunchConfigurations(s *session.Session) ([]Resource, error) {
+	svc := autoscaling.New(s)
+
 	params := &autoscaling.DescribeLaunchConfigurationsInput{}
-	resp, err := n.Service.DescribeLaunchConfigurations(params)
+	resp, err := svc.DescribeLaunchConfigurations(params)
 	if err != nil {
 		return nil, err
 	}
@@ -12,7 +30,7 @@ func (n *AutoScalingNuke) ListLaunchConfigurations() ([]Resource, error) {
 	resources := make([]Resource, 0)
 	for _, launchconfig := range resp.LaunchConfigurations {
 		resources = append(resources, &LaunchConfiguration{
-			svc:  n.Service,
+			svc:  svc,
 			name: launchconfig.LaunchConfigurationName,
 		})
 	}
@@ -22,6 +40,10 @@ func (n *AutoScalingNuke) ListLaunchConfigurations() ([]Resource, error) {
 type LaunchConfiguration struct {
 	svc  *autoscaling.AutoScaling
 	name *string
+}
+
+func (asg *LaunchConfiguration) TypeName() string {
+	return "LaunchConfiguration"
 }
 
 func (launchconfiguration *LaunchConfiguration) Remove() error {

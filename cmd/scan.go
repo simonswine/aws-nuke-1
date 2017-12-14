@@ -12,10 +12,10 @@ func Scan(sess *session.Session) <-chan *Item {
 	items := make(chan *Item, 100)
 
 	go func() {
-		listers := resources.GetListers(sess)
+		listers := resources.GetListers()
 
-		for _, lister := range listers {
-			r, err := safeLister(lister)
+		for category, lister := range listers {
+			service, err := safeLister(sess, lister)
 			if err != nil {
 				LogErrorf(fmt.Errorf("\n=============\n\n"+
 					"Listing with %T failed:\n\n"+
@@ -30,7 +30,7 @@ func Scan(sess *session.Session) <-chan *Item {
 				items <- &Item{
 					Region:   *sess.Config.Region,
 					Resource: r,
-					Service:  resources.GetCategory(r),
+					Service:  category,
 					Lister:   lister,
 					State:    ItemStateNew,
 				}
@@ -43,13 +43,13 @@ func Scan(sess *session.Session) <-chan *Item {
 	return items
 }
 
-func safeLister(lister resources.ResourceLister) (r []resources.Resource, err error) {
+func safeLister(sess *session.Session, lister resources.ResourceLister) (r []resources.Resource, err error) {
 	defer func() {
 		if r := recover(); r != nil {
 			err = fmt.Errorf("%v\n\n%s", r.(error), string(debug.Stack()))
 		}
 	}()
 
-	r, err = lister()
+	r, err = lister(sess)
 	return
 }
