@@ -8,7 +8,7 @@ type EC2InternetGateway struct {
 }
 
 func ListEC2InternetGateways(sess *session.Session) ([]Resource, error) {
-	resp, err := n.Service.DescribeInternetGateways(nil)
+	resp, err := svc.DescribeInternetGateways(nil)
 	if err != nil {
 		return nil, err
 	}
@@ -16,7 +16,7 @@ func ListEC2InternetGateways(sess *session.Session) ([]Resource, error) {
 	resources := make([]Resource, 0)
 	for _, out := range resp.InternetGateways {
 		resources = append(resources, &EC2InternetGateway{
-			svc: n.Service,
+			svc: svc,
 			id:  out.InternetGatewayId,
 		})
 	}

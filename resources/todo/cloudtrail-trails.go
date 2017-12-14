@@ -3,14 +3,14 @@ package resources
 import "github.com/aws/aws-sdk-go/service/cloudtrail"
 
 func ListCloudTrailTrails(sess *session.Session) ([]Resource, error) {
-	resp, err := n.Service.DescribeTrails(nil)
+	resp, err := svc.DescribeTrails(nil)
 	if err != nil {
 		return nil, err
 	}
 	resources := make([]Resource, 0)
 	for _, trail := range resp.TrailList {
 		resources = append(resources, &CloudTrailTrail{
-			svc:  n.Service,
+			svc:  svc,
 			name: trail.Name,
 		})
 

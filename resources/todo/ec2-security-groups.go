@@ -14,7 +14,7 @@ type EC2SecurityGroup struct {
 
 func ListEC2SecurityGroups(sess *session.Session) ([]Resource, error) {
 	params := &ec2.DescribeSecurityGroupsInput{}
-	resp, err := n.Service.DescribeSecurityGroups(params)
+	resp, err := svc.DescribeSecurityGroups(params)
 	if err != nil {
 		return nil, err
 	}
@@ -22,7 +22,7 @@ func ListEC2SecurityGroups(sess *session.Session) ([]Resource, error) {
 	resources := make([]Resource, 0)
 	for _, group := range resp.SecurityGroups {
 		resources = append(resources, &EC2SecurityGroup{
-			svc:  n.Service,
+			svc:  svc,
 			id:   group.GroupId,
 			name: group.GroupName,
 		})

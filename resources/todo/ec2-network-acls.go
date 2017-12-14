@@ -13,7 +13,7 @@ type EC2NetworkACL struct {
 }
 
 func ListEC2NetworkACLs(sess *session.Session) ([]Resource, error) {
-	resp, err := n.Service.DescribeNetworkAcls(nil)
+	resp, err := svc.DescribeNetworkAcls(nil)
 	if err != nil {
 		return nil, err
 	}
@@ -22,7 +22,7 @@ func ListEC2NetworkACLs(sess *session.Session) ([]Resource, error) {
 	for _, out := range resp.NetworkAcls {
 
 		resources = append(resources, &EC2NetworkACL{
-			svc:       n.Service,
+			svc:       svc,
 			id:        out.NetworkAclId,
 			isDefault: out.IsDefault,
 		})

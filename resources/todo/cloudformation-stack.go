@@ -3,7 +3,7 @@ package resources
 import "github.com/aws/aws-sdk-go/service/cloudformation"
 
 func ListCloudFormationStacks(sess *session.Session) ([]Resource, error) {
-	resp, err := n.Service.DescribeStacks(nil)
+	resp, err := svc.DescribeStacks(nil)
 	if err != nil {
 		return nil, err
 	}
@@ -11,7 +11,7 @@ func ListCloudFormationStacks(sess *session.Session) ([]Resource, error) {
 	resources := make([]Resource, 0)
 	for _, stack := range resp.Stacks {
 		resources = append(resources, &CloudFormationStack{
-			svc:  n.Service,
+			svc:  svc,
 			name: stack.StackName,
 		})
 	}

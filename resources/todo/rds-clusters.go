@@ -12,7 +12,7 @@ type RDSDBCluster struct {
 
 func ListRDSClusters(sess *session.Session) ([]Resource, error) {
 	params := &rds.DescribeDBClustersInput{}
-	resp, err := n.Service.DescribeDBClusters(params)
+	resp, err := svc.DescribeDBClusters(params)
 	if err != nil {
 		return nil, err
 	}
@@ -20,7 +20,7 @@ func ListRDSClusters(sess *session.Session) ([]Resource, error) {
 	resources := make([]Resource, 0)
 	for _, instance := range resp.DBClusters {
 		resources = append(resources, &RDSDBCluster{
-			svc: n.Service,
+			svc: svc,
 			id:  *instance.DBClusterIdentifier,
 		})
 	}

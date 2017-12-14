@@ -14,7 +14,7 @@ type EC2InternetGatewayAttachment struct {
 }
 
 func ListEC2InternetGatewayAttachments(sess *session.Session) ([]Resource, error) {
-	resp, err := n.Service.DescribeVpcs(nil)
+	resp, err := svc.DescribeVpcs(nil)
 	if err != nil {
 		return nil, err
 	}
@@ -30,14 +30,14 @@ func ListEC2InternetGatewayAttachments(sess *session.Session) ([]Resource, error
 			},
 		}
 
-		resp, err := n.Service.DescribeInternetGateways(params)
+		resp, err := svc.DescribeInternetGateways(params)
 		if err != nil {
 			return nil, err
 		}
 
 		for _, out := range resp.InternetGateways {
 			resources = append(resources, &EC2InternetGatewayAttachment{
-				svc:   n.Service,
+				svc:   svc,
 				vpcId: vpc.VpcId,
 				igwId: out.InternetGatewayId,
 			})

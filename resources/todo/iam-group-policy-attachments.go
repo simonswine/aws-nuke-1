@@ -14,14 +14,14 @@ type IAMGroupPolicyAttachment struct {
 }
 
 func ListIAMGroupPolicyAttachments(sess *session.Session) ([]Resource, error) {
-	resp, err := n.Service.ListGroups(nil)
+	resp, err := svc.ListGroups(nil)
 	if err != nil {
 		return nil, err
 	}
 
 	resources := make([]Resource, 0)
 	for _, role := range resp.Groups {
-		resp, err := n.Service.ListAttachedGroupPolicies(
+		resp, err := svc.ListAttachedGroupPolicies(
 			&iam.ListAttachedGroupPoliciesInput{
 				GroupName: role.GroupName,
 			})
@@ -31,7 +31,7 @@ func ListIAMGroupPolicyAttachments(sess *session.Session) ([]Resource, error) {
 
 		for _, pol := range resp.AttachedPolicies {
 			resources = append(resources, &IAMGroupPolicyAttachment{
-				svc:        n.Service,
+				svc:        svc,
 				policyArn:  *pol.PolicyArn,
 				policyName: *pol.PolicyName,
 				roleName:   *role.GroupName,

@@ -13,7 +13,7 @@ type IAMInstanceProfileRole struct {
 }
 
 func ListIAMInstanceProfileRoles(sess *session.Session) ([]Resource, error) {
-	resp, err := n.Service.ListInstanceProfiles(nil)
+	resp, err := svc.ListInstanceProfiles(nil)
 	if err != nil {
 		return nil, err
 	}
@@ -22,7 +22,7 @@ func ListIAMInstanceProfileRoles(sess *session.Session) ([]Resource, error) {
 	for _, out := range resp.InstanceProfiles {
 		for _, role := range out.Roles {
 			resources = append(resources, &IAMInstanceProfileRole{
-				svc:     n.Service,
+				svc:     svc,
 				profile: *out.InstanceProfileName,
 				role:    *role.RoleName,
 			})

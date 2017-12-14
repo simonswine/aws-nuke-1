@@ -7,14 +7,14 @@ import (
 )
 
 func ListCloudWatchEventsRules(sess *session.Session) ([]Resource, error) {
-	resp, err := n.Service.ListRules(nil)
+	resp, err := svc.ListRules(nil)
 	if err != nil {
 		return nil, err
 	}
 	resources := make([]Resource, 0)
 	for _, rule := range resp.Rules {
 		resources = append(resources, &CloudWatchEventsRule{
-			svc:  n.Service,
+			svc:  svc,
 			name: rule.Name,
 		})
 

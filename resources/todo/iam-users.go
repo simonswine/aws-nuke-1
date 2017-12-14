@@ -8,7 +8,7 @@ type IAMUser struct {
 }
 
 func ListIAMUsers(sess *session.Session) ([]Resource, error) {
-	resp, err := n.Service.ListUsers(nil)
+	resp, err := svc.ListUsers(nil)
 	if err != nil {
 		return nil, err
 	}
@@ -16,7 +16,7 @@ func ListIAMUsers(sess *session.Session) ([]Resource, error) {
 	resources := make([]Resource, 0)
 	for _, out := range resp.Users {
 		resources = append(resources, &IAMUser{
-			svc:  n.Service,
+			svc:  svc,
 			name: *out.UserName,
 		})
 	}

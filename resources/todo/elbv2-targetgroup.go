@@ -9,7 +9,7 @@ type ELBv2TargetGroup struct {
 }
 
 func ListElbv2TargetGroups(sess *session.Session) ([]Resource, error) {
-	resp, err := n.Service.DescribeTargetGroups(nil)
+	resp, err := svc.DescribeTargetGroups(nil)
 	if err != nil {
 		return nil, err
 	}
@@ -17,7 +17,7 @@ func ListElbv2TargetGroups(sess *session.Session) ([]Resource, error) {
 	resources := make([]Resource, 0)
 	for _, elbv2TargetGroup := range resp.TargetGroups {
 		resources = append(resources, &ELBv2TargetGroup{
-			svc:  n.Service,
+			svc:  svc,
 			name: elbv2TargetGroup.TargetGroupName,
 			arn:  elbv2TargetGroup.TargetGroupArn,
 		})

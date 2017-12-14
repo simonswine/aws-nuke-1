@@ -10,7 +10,7 @@ type EC2Address struct {
 
 func ListEC2Addresses(sess *session.Session) ([]Resource, error) {
 	params := &ec2.DescribeAddressesInput{}
-	resp, err := n.Service.DescribeAddresses(params)
+	resp, err := svc.DescribeAddresses(params)
 	if err != nil {
 		return nil, err
 	}
@@ -18,7 +18,7 @@ func ListEC2Addresses(sess *session.Session) ([]Resource, error) {
 	resources := make([]Resource, 0)
 	for _, out := range resp.Addresses {
 		resources = append(resources, &EC2Address{
-			svc: n.Service,
+			svc: svc,
 			id:  *out.AllocationId,
 			ip:  *out.PublicIp,
 		})

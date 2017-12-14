@@ -13,14 +13,14 @@ type EFSMountTarget struct {
 }
 
 func ListEFSMountTargets(sess *session.Session) ([]Resource, error) {
-	resp, err := n.Service.DescribeFileSystems(nil)
+	resp, err := svc.DescribeFileSystems(nil)
 	if err != nil {
 		return nil, err
 	}
 
 	resources := make([]Resource, 0)
 	for _, fs := range resp.FileSystems {
-		mt, err := n.Service.DescribeMountTargets(&efs.DescribeMountTargetsInput{
+		mt, err := svc.DescribeMountTargets(&efs.DescribeMountTargetsInput{
 			FileSystemId: fs.FileSystemId,
 		})
 
@@ -30,7 +30,7 @@ func ListEFSMountTargets(sess *session.Session) ([]Resource, error) {
 
 		for _, t := range mt.MountTargets {
 			resources = append(resources, &EFSMountTarget{
-				svc:  n.Service,
+				svc:  svc,
 				id:   *t.MountTargetId,
 				fsid: *t.FileSystemId,
 			})

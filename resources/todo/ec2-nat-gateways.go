@@ -14,7 +14,7 @@ type EC2NATGateway struct {
 
 func ListEC2NATGateways(sess *session.Session) ([]Resource, error) {
 	params := &ec2.DescribeNatGatewaysInput{}
-	resp, err := n.Service.DescribeNatGateways(params)
+	resp, err := svc.DescribeNatGateways(params)
 	if err != nil {
 		return nil, err
 	}
@@ -22,7 +22,7 @@ func ListEC2NATGateways(sess *session.Session) ([]Resource, error) {
 	resources := make([]Resource, 0)
 	for _, out := range resp.NatGateways {
 		resources = append(resources, &EC2NATGateway{
-			svc:   n.Service,
+			svc:   svc,
 			id:    *out.NatGatewayId,
 			state: *out.State,
 		})

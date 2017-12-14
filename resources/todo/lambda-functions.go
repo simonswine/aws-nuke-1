@@ -9,7 +9,7 @@ type LambdaFunction struct {
 
 func ListLambdaFunctions(sess *session.Session) ([]Resource, error) {
 	params := &lambda.ListFunctionsInput{}
-	resp, err := n.Service.ListFunctions(params)
+	resp, err := svc.ListFunctions(params)
 	if err != nil {
 		return nil, err
 	}
@@ -17,7 +17,7 @@ func ListLambdaFunctions(sess *session.Session) ([]Resource, error) {
 	resources := make([]Resource, 0)
 	for _, function := range resp.Functions {
 		resources = append(resources, &LambdaFunction{
-			svc:          n.Service,
+			svc:          svc,
 			functionName: function.FunctionName,
 		})
 	}

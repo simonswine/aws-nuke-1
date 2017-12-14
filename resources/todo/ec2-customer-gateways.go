@@ -14,7 +14,7 @@ type EC2CustomerGateway struct {
 
 func ListEC2CustomerGateways(sess *session.Session) ([]Resource, error) {
 	params := &ec2.DescribeCustomerGatewaysInput{}
-	resp, err := n.Service.DescribeCustomerGateways(params)
+	resp, err := svc.DescribeCustomerGateways(params)
 	if err != nil {
 		return nil, err
 	}
@@ -22,7 +22,7 @@ func ListEC2CustomerGateways(sess *session.Session) ([]Resource, error) {
 	resources := make([]Resource, 0)
 	for _, out := range resp.CustomerGateways {
 		resources = append(resources, &EC2CustomerGateway{
-			svc:   n.Service,
+			svc:   svc,
 			id:    *out.CustomerGatewayId,
 			state: *out.State,
 		})

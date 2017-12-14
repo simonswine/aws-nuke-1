@@ -7,13 +7,13 @@ import (
 )
 
 func ListCloudWatchEventsTargets(sess *session.Session) ([]Resource, error) {
-	resp, err := n.Service.ListRules(nil)
+	resp, err := svc.ListRules(nil)
 	if err != nil {
 		return nil, err
 	}
 	resources := make([]Resource, 0)
 	for _, rule := range resp.Rules {
-		targetResp, err := n.Service.ListTargetsByRule(&cloudwatchevents.ListTargetsByRuleInput{
+		targetResp, err := svc.ListTargetsByRule(&cloudwatchevents.ListTargetsByRuleInput{
 			Rule: rule.Name,
 		})
 		if err != nil {
@@ -22,7 +22,7 @@ func ListCloudWatchEventsTargets(sess *session.Session) ([]Resource, error) {
 
 		for _, target := range targetResp.Targets {
 			resources = append(resources, &CloudWatchEventsTarget{
-				svc:      n.Service,
+				svc:      svc,
 				ruleName: rule.Name,
 				targetId: target.Id,
 			})

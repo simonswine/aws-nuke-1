@@ -12,14 +12,14 @@ type ElasticacheSubnetGroup struct {
 
 func ListElasticacheSubnetGroups(sess *session.Session) ([]Resource, error) {
 	params := &elasticache.DescribeCacheSubnetGroupsInput{MaxRecords: aws.Int64(100)}
-	resp, err := n.Service.DescribeCacheSubnetGroups(params)
+	resp, err := svc.DescribeCacheSubnetGroups(params)
 	if err != nil {
 		return nil, err
 	}
 	var resources []Resource
 	for _, subnetGroup := range resp.CacheSubnetGroups {
 		resources = append(resources, &ElasticacheSubnetGroup{
-			svc:  n.Service,
+			svc:  svc,
 			name: subnetGroup.CacheSubnetGroupName,
 		})
 

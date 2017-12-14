@@ -8,7 +8,7 @@ type IAMServerCertificate struct {
 }
 
 func ListIAMServerCertificates(sess *session.Session) ([]Resource, error) {
-	resp, err := n.Service.ListServerCertificates(nil)
+	resp, err := svc.ListServerCertificates(nil)
 	if err != nil {
 		return nil, err
 	}
@@ -16,7 +16,7 @@ func ListIAMServerCertificates(sess *session.Session) ([]Resource, error) {
 	resources := make([]Resource, 0)
 	for _, meta := range resp.ServerCertificateMetadataList {
 		resources = append(resources, &IAMServerCertificate{
-			svc:  n.Service,
+			svc:  svc,
 			name: *meta.ServerCertificateName,
 		})
 	}

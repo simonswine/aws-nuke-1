@@ -8,7 +8,7 @@ type ELB struct {
 }
 
 func ListElbELBs(sess *session.Session) ([]Resource, error) {
-	resp, err := n.Service.DescribeLoadBalancers(nil)
+	resp, err := svc.DescribeLoadBalancers(nil)
 	if err != nil {
 		return nil, err
 	}
@@ -16,7 +16,7 @@ func ListElbELBs(sess *session.Session) ([]Resource, error) {
 	resources := make([]Resource, 0)
 	for _, elb := range resp.LoadBalancerDescriptions {
 		resources = append(resources, &ELB{
-			svc:  n.Service,
+			svc:  svc,
 			name: elb.LoadBalancerName,
 		})
 	}

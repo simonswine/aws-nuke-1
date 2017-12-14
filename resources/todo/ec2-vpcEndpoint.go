@@ -8,7 +8,7 @@ type EC2VPCEndpoint struct {
 }
 
 func ListEC2VPCEndpoints(sess *session.Session) ([]Resource, error) {
-	resp, err := n.Service.DescribeVpcEndpoints(nil)
+	resp, err := svc.DescribeVpcEndpoints(nil)
 	if err != nil {
 		return nil, err
 	}
@@ -16,7 +16,7 @@ func ListEC2VPCEndpoints(sess *session.Session) ([]Resource, error) {
 	resources := make([]Resource, 0)
 	for _, vpcEndpoint := range resp.VpcEndpoints {
 		resources = append(resources, &EC2VPCEndpoint{
-			svc: n.Service,
+			svc: svc,
 			id:  vpcEndpoint.VpcEndpointId,
 		})
 	}

@@ -8,7 +8,7 @@ type EC2RouteTable struct {
 }
 
 func ListEC2RouteTables(sess *session.Session) ([]Resource, error) {
-	resp, err := n.Service.DescribeRouteTables(nil)
+	resp, err := svc.DescribeRouteTables(nil)
 	if err != nil {
 		return nil, err
 	}
@@ -16,7 +16,7 @@ func ListEC2RouteTables(sess *session.Session) ([]Resource, error) {
 	resources := make([]Resource, 0)
 	for _, out := range resp.RouteTables {
 		resources = append(resources, &EC2RouteTable{
-			svc: n.Service,
+			svc: svc,
 			id:  out.RouteTableId,
 		})
 	}

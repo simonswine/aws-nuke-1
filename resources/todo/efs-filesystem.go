@@ -9,7 +9,7 @@ type EFSFileSystem struct {
 }
 
 func ListEFSFileSystems(sess *session.Session) ([]Resource, error) {
-	resp, err := n.Service.DescribeFileSystems(nil)
+	resp, err := svc.DescribeFileSystems(nil)
 	if err != nil {
 		return nil, err
 	}
@@ -17,7 +17,7 @@ func ListEFSFileSystems(sess *session.Session) ([]Resource, error) {
 	resources := make([]Resource, 0)
 	for _, fs := range resp.FileSystems {
 		resources = append(resources, &EFSFileSystem{
-			svc:  n.Service,
+			svc:  svc,
 			id:   *fs.FileSystemId,
 			name: *fs.CreationToken,
 		})

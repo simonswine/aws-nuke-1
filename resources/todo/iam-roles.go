@@ -14,7 +14,7 @@ type IAMRole struct {
 }
 
 func ListIAMRoles(sess *session.Session) ([]Resource, error) {
-	resp, err := n.Service.ListRoles(nil)
+	resp, err := svc.ListRoles(nil)
 	if err != nil {
 		return nil, err
 	}
@@ -22,7 +22,7 @@ func ListIAMRoles(sess *session.Session) ([]Resource, error) {
 	resources := make([]Resource, 0)
 	for _, out := range resp.Roles {
 		resources = append(resources, &IAMRole{
-			svc:  n.Service,
+			svc:  svc,
 			name: *out.RoleName,
 			path: *out.Path,
 		})

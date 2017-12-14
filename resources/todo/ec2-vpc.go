@@ -8,7 +8,7 @@ type EC2VPC struct {
 }
 
 func ListEC2VPCs(sess *session.Session) ([]Resource, error) {
-	resp, err := n.Service.DescribeVpcs(nil)
+	resp, err := svc.DescribeVpcs(nil)
 	if err != nil {
 		return nil, err
 	}
@@ -16,7 +16,7 @@ func ListEC2VPCs(sess *session.Session) ([]Resource, error) {
 	resources := make([]Resource, 0)
 	for _, vpc := range resp.Vpcs {
 		resources = append(resources, &EC2VPC{
-			svc: n.Service,
+			svc: svc,
 			id:  vpc.VpcId,
 		})
 	}

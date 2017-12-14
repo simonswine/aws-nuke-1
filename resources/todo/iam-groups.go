@@ -8,7 +8,7 @@ type IAMGroup struct {
 }
 
 func ListIAMGroups(sess *session.Session) ([]Resource, error) {
-	resp, err := n.Service.ListGroups(nil)
+	resp, err := svc.ListGroups(nil)
 	if err != nil {
 		return nil, err
 	}
@@ -16,7 +16,7 @@ func ListIAMGroups(sess *session.Session) ([]Resource, error) {
 	resources := make([]Resource, 0)
 	for _, out := range resp.Groups {
 		resources = append(resources, &IAMGroup{
-			svc:  n.Service,
+			svc:  svc,
 			name: *out.GroupName,
 		})
 	}

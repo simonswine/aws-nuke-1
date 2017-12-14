@@ -14,7 +14,7 @@ type EC2Instance struct {
 
 func ListEC2Instances(sess *session.Session) ([]Resource, error) {
 	params := &ec2.DescribeInstancesInput{}
-	resp, err := n.Service.DescribeInstances(params)
+	resp, err := svc.DescribeInstances(params)
 	if err != nil {
 		return nil, err
 	}
@@ -23,7 +23,7 @@ func ListEC2Instances(sess *session.Session) ([]Resource, error) {
 	for _, reservation := range resp.Reservations {
 		for _, instance := range reservation.Instances {
 			resources = append(resources, &EC2Instance{
-				svc:   n.Service,
+				svc:   svc,
 				id:    instance.InstanceId,
 				state: *instance.State.Name,
 			})

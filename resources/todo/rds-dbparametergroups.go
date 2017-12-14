@@ -15,14 +15,14 @@ type RDSDBParameterGroup struct {
 
 func ListRDSParameterGroups(sess *session.Session) ([]Resource, error) {
 	params := &rds.DescribeDBParameterGroupsInput{MaxRecords: aws.Int64(100)}
-	resp, err := n.Service.DescribeDBParameterGroups(params)
+	resp, err := svc.DescribeDBParameterGroups(params)
 	if err != nil {
 		return nil, err
 	}
 	var resources []Resource
 	for _, parametergroup := range resp.DBParameterGroups {
 		resources = append(resources, &RDSDBParameterGroup{
-			svc:  n.Service,
+			svc:  svc,
 			name: parametergroup.DBParameterGroupName,
 		})
 

@@ -13,14 +13,14 @@ type ElasticacheCacheCluster struct {
 
 func ListElasticacheCacheClusters(sess *session.Session) ([]Resource, error) {
 	params := &elasticache.DescribeCacheClustersInput{MaxRecords: aws.Int64(100)}
-	resp, err := n.Service.DescribeCacheClusters(params)
+	resp, err := svc.DescribeCacheClusters(params)
 	if err != nil {
 		return nil, err
 	}
 	var resources []Resource
 	for _, cacheCluster := range resp.CacheClusters {
 		resources = append(resources, &ElasticacheCacheCluster{
-			svc:       n.Service,
+			svc:       svc,
 			clusterID: cacheCluster.CacheClusterId,
 			status:    cacheCluster.CacheClusterStatus,
 		})

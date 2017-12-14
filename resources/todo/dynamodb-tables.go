@@ -11,7 +11,7 @@ type DynamoDBTable struct {
 }
 
 func ListDynamoDBTables(sess *session.Session) ([]Resource, error) {
-	resp, err := n.Service.ListTables(&dynamodb.ListTablesInput{})
+	resp, err := svc.ListTables(&dynamodb.ListTablesInput{})
 	if err != nil {
 		return nil, err
 	}
@@ -19,7 +19,7 @@ func ListDynamoDBTables(sess *session.Session) ([]Resource, error) {
 	resources := make([]Resource, 0)
 	for _, tableName := range resp.TableNames {
 		resources = append(resources, &DynamoDBTable{
-			svc: n.Service,
+			svc: svc,
 			id:  *tableName,
 		})
 	}

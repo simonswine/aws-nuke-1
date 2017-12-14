@@ -13,14 +13,14 @@ type RDSSnapshot struct {
 
 func ListRDSSnapshots(sess *session.Session) ([]Resource, error) {
 	params := &rds.DescribeDBSnapshotsInput{MaxRecords: aws.Int64(100)}
-	resp, err := n.Service.DescribeDBSnapshots(params)
+	resp, err := svc.DescribeDBSnapshots(params)
 	if err != nil {
 		return nil, err
 	}
 	var resources []Resource
 	for _, snapshot := range resp.DBSnapshots {
 		resources = append(resources, &RDSSnapshot{
-			svc:        n.Service,
+			svc:        svc,
 			identifier: snapshot.DBSnapshotIdentifier,
 			status:     snapshot.Status,
 		})

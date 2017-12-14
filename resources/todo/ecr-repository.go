@@ -36,14 +36,14 @@ func ListECRRepos(sess *session.Session) ([]Resource, error) {
 				continue
 			}
 		}
-		resp, err = n.Service.DescribeRepositories(params)
+		resp, err = svc.DescribeRepositories(params)
 		if err != nil {
 			fmt.Printf("Error occured")
 			return nil, err
 		}
 		for _, repository := range resp.Repositories {
 			resources = append(resources, &ECRRepository{
-				svc:  n.Service,
+				svc:  svc,
 				name: repository.RepositoryName,
 			})
 		}

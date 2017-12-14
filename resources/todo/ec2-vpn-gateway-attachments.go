@@ -15,7 +15,7 @@ type EC2VPNGatewayAttachment struct {
 
 func ListEC2VPNGatewayAttachments(sess *session.Session) ([]Resource, error) {
 
-	resp, err := n.Service.DescribeVpnGateways(nil)
+	resp, err := svc.DescribeVpnGateways(nil)
 	if err != nil {
 		return nil, err
 	}
@@ -25,7 +25,7 @@ func ListEC2VPNGatewayAttachments(sess *session.Session) ([]Resource, error) {
 	for _, vgw := range resp.VpnGateways {
 		for _, att := range vgw.VpcAttachments {
 			resources = append(resources, &EC2VPNGatewayAttachment{
-				svc:   n.Service,
+				svc:   svc,
 				vpcId: *att.VpcId,
 				vpnId: *vgw.VpnGatewayId,
 				state: *att.State,

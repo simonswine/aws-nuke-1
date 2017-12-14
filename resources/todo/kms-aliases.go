@@ -13,7 +13,7 @@ type KMSAlias struct {
 }
 
 func ListKMSAliases(sess *session.Session) ([]Resource, error) {
-	resp, err := n.Service.ListAliases(nil)
+	resp, err := svc.ListAliases(nil)
 	if err != nil {
 		return nil, err
 	}
@@ -21,7 +21,7 @@ func ListKMSAliases(sess *session.Session) ([]Resource, error) {
 	resources := make([]Resource, 0)
 	for _, alias := range resp.Aliases {
 		resources = append(resources, &KMSAlias{
-			svc:  n.Service,
+			svc:  svc,
 			name: *alias.AliasName,
 		})
 	}

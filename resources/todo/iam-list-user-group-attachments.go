@@ -13,14 +13,14 @@ type IAMUserGroupAttachment struct {
 }
 
 func ListIAMUserGroupAttachments(sess *session.Session) ([]Resource, error) {
-	resp, err := n.Service.ListUsers(nil)
+	resp, err := svc.ListUsers(nil)
 	if err != nil {
 		return nil, err
 	}
 
 	resources := make([]Resource, 0)
 	for _, role := range resp.Users {
-		resp, err := n.Service.ListGroupsForUser(
+		resp, err := svc.ListGroupsForUser(
 			&iam.ListGroupsForUserInput{
 				UserName: role.UserName,
 			})
@@ -30,7 +30,7 @@ func ListIAMUserGroupAttachments(sess *session.Session) ([]Resource, error) {
 
 		for _, grp := range resp.Groups {
 			resources = append(resources, &IAMUserGroupAttachment{
-				svc:       n.Service,
+				svc:       svc,
 				groupName: *grp.GroupName,
 				userName:  *role.UserName,
 			})

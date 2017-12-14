@@ -14,7 +14,7 @@ type EC2VPNGateway struct {
 
 func ListEC2VPNGateways(sess *session.Session) ([]Resource, error) {
 	params := &ec2.DescribeVpnGatewaysInput{}
-	resp, err := n.Service.DescribeVpnGateways(params)
+	resp, err := svc.DescribeVpnGateways(params)
 	if err != nil {
 		return nil, err
 	}
@@ -22,7 +22,7 @@ func ListEC2VPNGateways(sess *session.Session) ([]Resource, error) {
 	resources := make([]Resource, 0)
 	for _, out := range resp.VpnGateways {
 		resources = append(resources, &EC2VPNGateway{
-			svc:   n.Service,
+			svc:   svc,
 			id:    *out.VpnGatewayId,
 			state: *out.State,
 		})

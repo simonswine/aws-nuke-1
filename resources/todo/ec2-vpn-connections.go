@@ -14,7 +14,7 @@ type EC2VPNConnection struct {
 
 func ListEC2VPNConnections(sess *session.Session) ([]Resource, error) {
 	params := &ec2.DescribeVpnConnectionsInput{}
-	resp, err := n.Service.DescribeVpnConnections(params)
+	resp, err := svc.DescribeVpnConnections(params)
 	if err != nil {
 		return nil, err
 	}
@@ -22,7 +22,7 @@ func ListEC2VPNConnections(sess *session.Session) ([]Resource, error) {
 	resources := make([]Resource, 0)
 	for _, out := range resp.VpnConnections {
 		resources = append(resources, &EC2VPNConnection{
-			svc:   n.Service,
+			svc:   svc,
 			id:    *out.VpnConnectionId,
 			state: *out.State,
 		})

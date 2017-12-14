@@ -12,14 +12,14 @@ type RDSDBSubnetGroup struct {
 
 func ListRDSSubnetGroups(sess *session.Session) ([]Resource, error) {
 	params := &rds.DescribeDBSubnetGroupsInput{MaxRecords: aws.Int64(100)}
-	resp, err := n.Service.DescribeDBSubnetGroups(params)
+	resp, err := svc.DescribeDBSubnetGroups(params)
 	if err != nil {
 		return nil, err
 	}
 	var resources []Resource
 	for _, subnetGroup := range resp.DBSubnetGroups {
 		resources = append(resources, &RDSDBSubnetGroup{
-			svc:  n.Service,
+			svc:  svc,
 			name: subnetGroup.DBSubnetGroupName,
 		})
 

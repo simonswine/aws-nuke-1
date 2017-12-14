@@ -11,7 +11,7 @@ type IAMPolicy struct {
 }
 
 func ListIAMPolicies(sess *session.Session) ([]Resource, error) {
-	resp, err := n.Service.ListPolicies(&iam.ListPoliciesInput{
+	resp, err := svc.ListPolicies(&iam.ListPoliciesInput{
 		Scope: aws.String("Local"),
 	})
 	if err != nil {
@@ -21,7 +21,7 @@ func ListIAMPolicies(sess *session.Session) ([]Resource, error) {
 	resources := make([]Resource, 0)
 	for _, out := range resp.Policies {
 		resources = append(resources, &IAMPolicy{
-			svc: n.Service,
+			svc: svc,
 			arn: *out.Arn,
 		})
 	}

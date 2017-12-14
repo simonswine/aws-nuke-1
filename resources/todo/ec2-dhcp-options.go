@@ -8,7 +8,7 @@ type EC2DHCPOption struct {
 }
 
 func ListEC2DHCPOptions(sess *session.Session) ([]Resource, error) {
-	resp, err := n.Service.DescribeDhcpOptions(nil)
+	resp, err := svc.DescribeDhcpOptions(nil)
 	if err != nil {
 		return nil, err
 	}
@@ -17,7 +17,7 @@ func ListEC2DHCPOptions(sess *session.Session) ([]Resource, error) {
 	for _, out := range resp.DhcpOptions {
 
 		resources = append(resources, &EC2DHCPOption{
-			svc: n.Service,
+			svc: svc,
 			id:  out.DhcpOptionsId,
 		})
 	}

@@ -9,7 +9,7 @@ type EC2Subnet struct {
 
 func ListEC2Subnets(sess *session.Session) ([]Resource, error) {
 	params := &ec2.DescribeSubnetsInput{}
-	resp, err := n.Service.DescribeSubnets(params)
+	resp, err := svc.DescribeSubnets(params)
 	if err != nil {
 		return nil, err
 	}
@@ -17,7 +17,7 @@ func ListEC2Subnets(sess *session.Session) ([]Resource, error) {
 	resources := make([]Resource, 0)
 	for _, out := range resp.Subnets {
 		resources = append(resources, &EC2Subnet{
-			svc: n.Service,
+			svc: svc,
 			id:  out.SubnetId,
 		})
 	}

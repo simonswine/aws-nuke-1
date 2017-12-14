@@ -16,7 +16,7 @@ type KMSKey struct {
 }
 
 func ListKMSKeys(sess *session.Session) ([]Resource, error) {
-	respAlias, err := n.Service.ListAliases(nil)
+	respAlias, err := svc.ListAliases(nil)
 	if err != nil {
 		return nil, err
 	}
@@ -28,14 +28,14 @@ func ListKMSKeys(sess *session.Session) ([]Resource, error) {
 		}
 	}
 
-	resp, err := n.Service.ListKeys(nil)
+	resp, err := svc.ListKeys(nil)
 	if err != nil {
 		return nil, err
 	}
 
 	resources := make([]Resource, 0)
 	for _, key := range resp.Keys {
-		resp, err := n.Service.DescribeKey(&kms.DescribeKeyInput{
+		resp, err := svc.DescribeKey(&kms.DescribeKeyInput{
 			KeyId: key.KeyId,
 		})
 		if err != nil {
@@ -43,7 +43,7 @@ func ListKMSKeys(sess *session.Session) ([]Resource, error) {
 		}
 
 		resources = append(resources, &KMSKey{
-			svc:   n.Service,
+			svc:   svc,
 			id:    *resp.KeyMetadata.KeyId,
 			state: *resp.KeyMetadata.KeyState,
 			alias: aliasMap[*resp.KeyMetadata.KeyId],

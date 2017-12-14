@@ -25,14 +25,14 @@ func ListS3Objects(sess *session.Session) ([]Resource, error) {
 			Bucket: &name,
 		}
 
-		resp, err := n.Service.ListObjects(params)
+		resp, err := svc.ListObjects(params)
 		if err != nil {
 			return nil, err
 		}
 
 		for _, out := range resp.Contents {
 			resources = append(resources, &S3Object{
-				svc:    n.Service,
+				svc:    svc,
 				bucket: name,
 				key:    *out.Key,
 			})

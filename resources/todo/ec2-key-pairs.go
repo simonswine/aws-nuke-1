@@ -8,7 +8,7 @@ type EC2KeyPair struct {
 }
 
 func ListEC2KeyPairs(sess *session.Session) ([]Resource, error) {
-	resp, err := n.Service.DescribeKeyPairs(nil)
+	resp, err := svc.DescribeKeyPairs(nil)
 	if err != nil {
 		return nil, err
 	}
@@ -16,7 +16,7 @@ func ListEC2KeyPairs(sess *session.Session) ([]Resource, error) {
 	resources := make([]Resource, 0)
 	for _, out := range resp.KeyPairs {
 		resources = append(resources, &EC2KeyPair{
-			svc:  n.Service,
+			svc:  svc,
 			name: *out.KeyName,
 		})
 	}

@@ -8,7 +8,7 @@ type EC2Volume struct {
 }
 
 func ListEC2Volumes(sess *session.Session) ([]Resource, error) {
-	resp, err := n.Service.DescribeVolumes(nil)
+	resp, err := svc.DescribeVolumes(nil)
 	if err != nil {
 		return nil, err
 	}
@@ -16,7 +16,7 @@ func ListEC2Volumes(sess *session.Session) ([]Resource, error) {
 	resources := make([]Resource, 0)
 	for _, out := range resp.Volumes {
 		resources = append(resources, &EC2Volume{
-			svc: n.Service,
+			svc: svc,
 			id:  *out.VolumeId,
 		})
 	}

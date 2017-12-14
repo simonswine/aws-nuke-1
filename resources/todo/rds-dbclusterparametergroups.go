@@ -15,14 +15,14 @@ type RDSDBClusterParameterGroup struct {
 
 func ListRDSClusterParameterGroups(sess *session.Session) ([]Resource, error) {
 	params := &rds.DescribeDBClusterParameterGroupsInput{MaxRecords: aws.Int64(100)}
-	resp, err := n.Service.DescribeDBClusterParameterGroups(params)
+	resp, err := svc.DescribeDBClusterParameterGroups(params)
 	if err != nil {
 		return nil, err
 	}
 	var resources []Resource
 	for _, parametergroup := range resp.DBClusterParameterGroups {
 		resources = append(resources, &RDSDBClusterParameterGroup{
-			svc:  n.Service,
+			svc:  svc,
 			name: parametergroup.DBClusterParameterGroupName,
 		})
 

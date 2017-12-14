@@ -8,7 +8,7 @@ type IAMInstanceProfile struct {
 }
 
 func ListIAMInstanceProfiles(sess *session.Session) ([]Resource, error) {
-	resp, err := n.Service.ListInstanceProfiles(nil)
+	resp, err := svc.ListInstanceProfiles(nil)
 	if err != nil {
 		return nil, err
 	}
@@ -16,7 +16,7 @@ func ListIAMInstanceProfiles(sess *session.Session) ([]Resource, error) {
 	resources := make([]Resource, 0)
 	for _, out := range resp.InstanceProfiles {
 		resources = append(resources, &IAMInstanceProfile{
-			svc:  n.Service,
+			svc:  svc,
 			name: *out.InstanceProfileName,
 		})
 	}

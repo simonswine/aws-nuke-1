@@ -14,14 +14,14 @@ type IAMUserAccessKey struct {
 }
 
 func ListIAMUserAccessKeys(sess *session.Session) ([]Resource, error) {
-	resp, err := n.Service.ListUsers(nil)
+	resp, err := svc.ListUsers(nil)
 	if err != nil {
 		return nil, err
 	}
 
 	resources := make([]Resource, 0)
 	for _, role := range resp.Users {
-		resp, err := n.Service.ListAccessKeys(
+		resp, err := svc.ListAccessKeys(
 			&iam.ListAccessKeysInput{
 				UserName: role.UserName,
 			})
@@ -31,7 +31,7 @@ func ListIAMUserAccessKeys(sess *session.Session) ([]Resource, error) {
 
 		for _, meta := range resp.AccessKeyMetadata {
 			resources = append(resources, &IAMUserAccessKey{
-				svc:         n.Service,
+				svc:         svc,
 				accessKeyId: *meta.AccessKeyId,
 				userName:    *meta.UserName,
 				status:      *meta.Status,

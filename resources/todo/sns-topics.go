@@ -7,14 +7,14 @@ import (
 )
 
 func ListSNSTopics(sess *session.Session) ([]Resource, error) {
-	resp, err := n.Service.ListTopics(nil)
+	resp, err := svc.ListTopics(nil)
 	if err != nil {
 		return nil, err
 	}
 	resources := make([]Resource, 0)
 	for _, topic := range resp.Topics {
 		resources = append(resources, &SNSTopic{
-			svc: n.Service,
+			svc: svc,
 			id:  topic.TopicArn,
 		})
 	}

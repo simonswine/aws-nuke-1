@@ -7,7 +7,7 @@ import (
 )
 
 func ListSNSSubscriptions(sess *session.Session) ([]Resource, error) {
-	resp, err := n.Service.ListSubscriptions(nil)
+	resp, err := svc.ListSubscriptions(nil)
 	if err != nil {
 		return nil, err
 	}
@@ -15,7 +15,7 @@ func ListSNSSubscriptions(sess *session.Session) ([]Resource, error) {
 	for _, subscription := range resp.Subscriptions {
 		if *subscription.SubscriptionArn != "PendingConfirmation" {
 			resources = append(resources, &SNSSubscription{
-				svc:  n.Service,
+				svc:  svc,
 				id:   subscription.SubscriptionArn,
 				name: subscription.Owner,
 			})

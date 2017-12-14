@@ -12,7 +12,7 @@ type RDSInstance struct {
 
 func ListRDSInstances(sess *session.Session) ([]Resource, error) {
 	params := &rds.DescribeDBInstancesInput{}
-	resp, err := n.Service.DescribeDBInstances(params)
+	resp, err := svc.DescribeDBInstances(params)
 	if err != nil {
 		return nil, err
 	}
@@ -20,7 +20,7 @@ func ListRDSInstances(sess *session.Session) ([]Resource, error) {
 	resources := make([]Resource, 0)
 	for _, instance := range resp.DBInstances {
 		resources = append(resources, &RDSInstance{
-			svc: n.Service,
+			svc: svc,
 			id:  *instance.DBInstanceIdentifier,
 		})
 	}
