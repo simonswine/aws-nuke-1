@@ -11,6 +11,10 @@ type ElasticacheCacheCluster struct {
 	status    *string
 }
 
+func init() {
+	register("ElasticacheCacheCluster", ListElasticacheCacheClusters)
+}
+
 func ListElasticacheCacheClusters(sess *session.Session) ([]Resource, error) {
 	params := &elasticache.DescribeCacheClustersInput{MaxRecords: aws.Int64(100)}
 	resp, err := svc.DescribeCacheClusters(params)

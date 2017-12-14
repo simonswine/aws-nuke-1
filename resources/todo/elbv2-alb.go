@@ -8,6 +8,10 @@ type ELBv2 struct {
 	arn  *string
 }
 
+func init() {
+	register("Elbv2ELB", ListElbv2ELBs)
+}
+
 func ListElbv2ELBs(sess *session.Session) ([]Resource, error) {
 	resp, err := svc.DescribeLoadBalancers(nil)
 	if err != nil {

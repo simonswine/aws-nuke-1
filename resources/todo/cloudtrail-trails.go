@@ -2,6 +2,10 @@ package resources
 
 import "github.com/aws/aws-sdk-go/service/cloudtrail"
 
+func init() {
+	register("CloudTrailTrail", ListCloudTrailTrails)
+}
+
 func ListCloudTrailTrails(sess *session.Session) ([]Resource, error) {
 	resp, err := svc.DescribeTrails(nil)
 	if err != nil {

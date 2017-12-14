@@ -7,6 +7,10 @@ type EC2Subnet struct {
 	id  *string
 }
 
+func init() {
+	register("EC2Subnet", ListEC2Subnets)
+}
+
 func ListEC2Subnets(sess *session.Session) ([]Resource, error) {
 	params := &ec2.DescribeSubnetsInput{}
 	resp, err := svc.DescribeSubnets(params)

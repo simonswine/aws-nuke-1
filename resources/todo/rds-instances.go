@@ -10,6 +10,10 @@ type RDSInstance struct {
 	id  string
 }
 
+func init() {
+	register("RDSInstance", ListRDSInstances)
+}
+
 func ListRDSInstances(sess *session.Session) ([]Resource, error) {
 	params := &rds.DescribeDBInstancesInput{}
 	resp, err := svc.DescribeDBInstances(params)

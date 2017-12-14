@@ -12,6 +12,10 @@ type KMSAlias struct {
 	name string
 }
 
+func init() {
+	register("KMSAliase", ListKMSAliases)
+}
+
 func ListKMSAliases(sess *session.Session) ([]Resource, error) {
 	resp, err := svc.ListAliases(nil)
 	if err != nil {

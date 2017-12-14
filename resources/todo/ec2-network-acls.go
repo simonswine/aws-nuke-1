@@ -12,6 +12,10 @@ type EC2NetworkACL struct {
 	isDefault *bool
 }
 
+func init() {
+	register("EC2NetworkACL", ListEC2NetworkACLs)
+}
+
 func ListEC2NetworkACLs(sess *session.Session) ([]Resource, error) {
 	resp, err := svc.DescribeNetworkAcls(nil)
 	if err != nil {

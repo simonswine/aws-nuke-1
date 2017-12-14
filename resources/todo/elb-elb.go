@@ -7,6 +7,10 @@ type ELB struct {
 	name *string
 }
 
+func init() {
+	register("ElbELB", ListElbELBs)
+}
+
 func ListElbELBs(sess *session.Session) ([]Resource, error) {
 	resp, err := svc.DescribeLoadBalancers(nil)
 	if err != nil {

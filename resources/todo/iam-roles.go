@@ -13,6 +13,10 @@ type IAMRole struct {
 	path string
 }
 
+func init() {
+	register("IAMRole", ListIAMRoles)
+}
+
 func ListIAMRoles(sess *session.Session) ([]Resource, error) {
 	resp, err := svc.ListRoles(nil)
 	if err != nil {

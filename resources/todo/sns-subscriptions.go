@@ -6,6 +6,10 @@ import (
 	"github.com/aws/aws-sdk-go/service/sns"
 )
 
+func init() {
+	register("SNSSubscription", ListSNSSubscriptions)
+}
+
 func ListSNSSubscriptions(sess *session.Session) ([]Resource, error) {
 	resp, err := svc.ListSubscriptions(nil)
 	if err != nil {

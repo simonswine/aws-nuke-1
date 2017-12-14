@@ -7,6 +7,10 @@ type EC2DHCPOption struct {
 	id  *string
 }
 
+func init() {
+	register("EC2DHCPOption", ListEC2DHCPOptions)
+}
+
 func ListEC2DHCPOptions(sess *session.Session) ([]Resource, error) {
 	resp, err := svc.DescribeDhcpOptions(nil)
 	if err != nil {

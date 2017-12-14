@@ -14,6 +14,10 @@ type Route53ResourceRecordSet struct {
 	changeId     *string
 }
 
+func init() {
+	register("Route53ResourceRecord", ListRoute53ResourceRecords)
+}
+
 func ListRoute53ResourceRecords(sess *session.Session) ([]Resource, error) {
 	resources := make([]Resource, 0)
 

@@ -7,6 +7,10 @@ type EC2Volume struct {
 	id  string
 }
 
+func init() {
+	register("EC2Volume", ListEC2Volumes)
+}
+
 func ListEC2Volumes(sess *session.Session) ([]Resource, error) {
 	resp, err := svc.DescribeVolumes(nil)
 	if err != nil {

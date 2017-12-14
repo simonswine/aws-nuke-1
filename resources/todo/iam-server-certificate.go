@@ -7,6 +7,10 @@ type IAMServerCertificate struct {
 	name string
 }
 
+func init() {
+	register("IAMServerCertificate", ListIAMServerCertificates)
+}
+
 func ListIAMServerCertificates(sess *session.Session) ([]Resource, error) {
 	resp, err := svc.ListServerCertificates(nil)
 	if err != nil {

@@ -11,6 +11,10 @@ type RDSSnapshot struct {
 	status     *string
 }
 
+func init() {
+	register("RDSSnapshot", ListRDSSnapshots)
+}
+
 func ListRDSSnapshots(sess *session.Session) ([]Resource, error) {
 	params := &rds.DescribeDBSnapshotsInput{MaxRecords: aws.Int64(100)}
 	resp, err := svc.DescribeDBSnapshots(params)

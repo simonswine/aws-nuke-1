@@ -15,6 +15,10 @@ type KMSKey struct {
 	alias string
 }
 
+func init() {
+	register("KMSKey", ListKMSKeys)
+}
+
 func ListKMSKeys(sess *session.Session) ([]Resource, error) {
 	respAlias, err := svc.ListAliases(nil)
 	if err != nil {

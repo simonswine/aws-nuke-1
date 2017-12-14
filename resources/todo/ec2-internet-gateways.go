@@ -7,6 +7,10 @@ type EC2InternetGateway struct {
 	id  *string
 }
 
+func init() {
+	register("EC2InternetGateway", ListEC2InternetGateways)
+}
+
 func ListEC2InternetGateways(sess *session.Session) ([]Resource, error) {
 	resp, err := svc.DescribeInternetGateways(nil)
 	if err != nil {

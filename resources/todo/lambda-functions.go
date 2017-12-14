@@ -7,6 +7,10 @@ type LambdaFunction struct {
 	functionName *string
 }
 
+func init() {
+	register("LambdaFunction", ListLambdaFunctions)
+}
+
 func ListLambdaFunctions(sess *session.Session) ([]Resource, error) {
 	params := &lambda.ListFunctionsInput{}
 	resp, err := svc.ListFunctions(params)

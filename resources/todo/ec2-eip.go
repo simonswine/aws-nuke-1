@@ -8,6 +8,10 @@ type EC2Address struct {
 	ip  string
 }
 
+func init() {
+	register("EC2Addresse", ListEC2Addresses)
+}
+
 func ListEC2Addresses(sess *session.Session) ([]Resource, error) {
 	params := &ec2.DescribeAddressesInput{}
 	resp, err := svc.DescribeAddresses(params)

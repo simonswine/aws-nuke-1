@@ -12,6 +12,10 @@ type IAMUserGroupAttachment struct {
 	userName  string
 }
 
+func init() {
+	register("IAMUserGroupAttachment", ListIAMUserGroupAttachments)
+}
+
 func ListIAMUserGroupAttachments(sess *session.Session) ([]Resource, error) {
 	resp, err := svc.ListUsers(nil)
 	if err != nil {

@@ -12,6 +12,10 @@ type S3Object struct {
 	key    string
 }
 
+func init() {
+	register("S3Object", ListS3Objects)
+}
+
 func ListS3Objects(sess *session.Session) ([]Resource, error) {
 	resources := make([]Resource, 0)
 

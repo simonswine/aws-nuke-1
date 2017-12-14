@@ -13,6 +13,10 @@ type IAMUserPolicyAttachment struct {
 	roleName   string
 }
 
+func init() {
+	register("IAMUserPolicyAttachment", ListIAMUserPolicyAttachments)
+}
+
 func ListIAMUserPolicyAttachments(sess *session.Session) ([]Resource, error) {
 	resp, err := svc.ListUsers(nil)
 	if err != nil {

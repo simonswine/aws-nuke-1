@@ -7,6 +7,10 @@ type IAMUser struct {
 	name string
 }
 
+func init() {
+	register("IAMUser", ListIAMUsers)
+}
+
 func ListIAMUsers(sess *session.Session) ([]Resource, error) {
 	resp, err := svc.ListUsers(nil)
 	if err != nil {

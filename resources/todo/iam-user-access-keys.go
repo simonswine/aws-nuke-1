@@ -13,6 +13,10 @@ type IAMUserAccessKey struct {
 	status      string
 }
 
+func init() {
+	register("IAMUserAccessKey", ListIAMUserAccessKeys)
+}
+
 func ListIAMUserAccessKeys(sess *session.Session) ([]Resource, error) {
 	resp, err := svc.ListUsers(nil)
 	if err != nil {

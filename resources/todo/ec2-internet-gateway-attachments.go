@@ -13,6 +13,10 @@ type EC2InternetGatewayAttachment struct {
 	igwId *string
 }
 
+func init() {
+	register("EC2InternetGatewayAttachment", ListEC2InternetGatewayAttachments)
+}
+
 func ListEC2InternetGatewayAttachments(sess *session.Session) ([]Resource, error) {
 	resp, err := svc.DescribeVpcs(nil)
 	if err != nil {

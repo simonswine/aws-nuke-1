@@ -12,6 +12,10 @@ type EC2SecurityGroup struct {
 	name *string
 }
 
+func init() {
+	register("EC2SecurityGroup", ListEC2SecurityGroups)
+}
+
 func ListEC2SecurityGroups(sess *session.Session) ([]Resource, error) {
 	params := &ec2.DescribeSecurityGroupsInput{}
 	resp, err := svc.DescribeSecurityGroups(params)

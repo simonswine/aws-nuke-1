@@ -12,6 +12,10 @@ type EC2VPNGateway struct {
 	state string
 }
 
+func init() {
+	register("EC2VPNGateway", ListEC2VPNGateways)
+}
+
 func ListEC2VPNGateways(sess *session.Session) ([]Resource, error) {
 	params := &ec2.DescribeVpnGatewaysInput{}
 	resp, err := svc.DescribeVpnGateways(params)

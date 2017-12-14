@@ -13,6 +13,10 @@ type EC2VPNGatewayAttachment struct {
 	state string
 }
 
+func init() {
+	register("EC2VPNGatewayAttachment", ListEC2VPNGatewayAttachments)
+}
+
 func ListEC2VPNGatewayAttachments(sess *session.Session) ([]Resource, error) {
 
 	resp, err := svc.DescribeVpnGateways(nil)

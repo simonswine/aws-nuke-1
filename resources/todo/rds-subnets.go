@@ -10,6 +10,10 @@ type RDSDBSubnetGroup struct {
 	name *string
 }
 
+func init() {
+	register("RDSSubnetGroup", ListRDSSubnetGroups)
+}
+
 func ListRDSSubnetGroups(sess *session.Session) ([]Resource, error) {
 	params := &rds.DescribeDBSubnetGroupsInput{MaxRecords: aws.Int64(100)}
 	resp, err := svc.DescribeDBSubnetGroups(params)

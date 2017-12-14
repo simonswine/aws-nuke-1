@@ -7,6 +7,10 @@ type EC2KeyPair struct {
 	name string
 }
 
+func init() {
+	register("EC2KeyPair", ListEC2KeyPairs)
+}
+
 func ListEC2KeyPairs(sess *session.Session) ([]Resource, error) {
 	resp, err := svc.DescribeKeyPairs(nil)
 	if err != nil {

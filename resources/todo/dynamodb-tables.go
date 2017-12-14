@@ -10,6 +10,10 @@ type DynamoDBTable struct {
 	id  string
 }
 
+func init() {
+	register("DynamoDBTable", ListDynamoDBTables)
+}
+
 func ListDynamoDBTables(sess *session.Session) ([]Resource, error) {
 	resp, err := svc.ListTables(&dynamodb.ListTablesInput{})
 	if err != nil {

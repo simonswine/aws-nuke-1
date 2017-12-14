@@ -12,6 +12,10 @@ type EC2NATGateway struct {
 	state string
 }
 
+func init() {
+	register("EC2NATGateway", ListEC2NATGateways)
+}
+
 func ListEC2NATGateways(sess *session.Session) ([]Resource, error) {
 	params := &ec2.DescribeNatGatewaysInput{}
 	resp, err := svc.DescribeNatGateways(params)

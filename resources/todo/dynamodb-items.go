@@ -13,6 +13,10 @@ type DynamoDBTableItem struct {
 	table Resource
 }
 
+func init() {
+	register("DynamoDBItem", ListDynamoDBItems)
+}
+
 func ListDynamoDBItems(sess *session.Session) ([]Resource, error) {
 	tables, tablesErr := n.ListTables()
 	if tablesErr != nil {

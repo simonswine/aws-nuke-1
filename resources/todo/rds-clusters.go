@@ -10,6 +10,10 @@ type RDSDBCluster struct {
 	id  string
 }
 
+func init() {
+	register("RDSCluster", ListRDSClusters)
+}
+
 func ListRDSClusters(sess *session.Session) ([]Resource, error) {
 	params := &rds.DescribeDBClustersInput{}
 	resp, err := svc.DescribeDBClusters(params)

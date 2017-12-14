@@ -7,6 +7,10 @@ type IAMInstanceProfile struct {
 	name string
 }
 
+func init() {
+	register("IAMInstanceProfile", ListIAMInstanceProfiles)
+}
+
 func ListIAMInstanceProfiles(sess *session.Session) ([]Resource, error) {
 	resp, err := svc.ListInstanceProfiles(nil)
 	if err != nil {

@@ -7,6 +7,10 @@ type IAMGroup struct {
 	name string
 }
 
+func init() {
+	register("IAMGroup", ListIAMGroups)
+}
+
 func ListIAMGroups(sess *session.Session) ([]Resource, error) {
 	resp, err := svc.ListGroups(nil)
 	if err != nil {

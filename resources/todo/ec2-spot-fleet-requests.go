@@ -13,6 +13,10 @@ type EC2SpotFleetRequest struct {
 	state string
 }
 
+func init() {
+	register("EC2SpotFleetRequest", ListEC2SpotFleetRequests)
+}
+
 func ListEC2SpotFleetRequests(sess *session.Session) ([]Resource, error) {
 	resp, err := svc.DescribeSpotFleetRequests(nil)
 	if err != nil {

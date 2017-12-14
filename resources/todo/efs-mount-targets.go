@@ -12,6 +12,10 @@ type EFSMountTarget struct {
 	fsid string
 }
 
+func init() {
+	register("EFSMountTarget", ListEFSMountTargets)
+}
+
 func ListEFSMountTargets(sess *session.Session) ([]Resource, error) {
 	resp, err := svc.DescribeFileSystems(nil)
 	if err != nil {

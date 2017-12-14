@@ -7,6 +7,10 @@ type EC2RouteTable struct {
 	id  *string
 }
 
+func init() {
+	register("EC2RouteTable", ListEC2RouteTables)
+}
+
 func ListEC2RouteTables(sess *session.Session) ([]Resource, error) {
 	resp, err := svc.DescribeRouteTables(nil)
 	if err != nil {

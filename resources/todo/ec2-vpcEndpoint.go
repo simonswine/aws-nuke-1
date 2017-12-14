@@ -7,6 +7,10 @@ type EC2VPCEndpoint struct {
 	id  *string
 }
 
+func init() {
+	register("EC2VPCEndpoint", ListEC2VPCEndpoints)
+}
+
 func ListEC2VPCEndpoints(sess *session.Session) ([]Resource, error) {
 	resp, err := svc.DescribeVpcEndpoints(nil)
 	if err != nil {

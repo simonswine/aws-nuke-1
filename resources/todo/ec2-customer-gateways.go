@@ -12,6 +12,10 @@ type EC2CustomerGateway struct {
 	state string
 }
 
+func init() {
+	register("EC2CustomerGateway", ListEC2CustomerGateways)
+}
+
 func ListEC2CustomerGateways(sess *session.Session) ([]Resource, error) {
 	params := &ec2.DescribeCustomerGatewaysInput{}
 	resp, err := svc.DescribeCustomerGateways(params)

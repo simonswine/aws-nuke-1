@@ -2,6 +2,10 @@ package resources
 
 import "github.com/aws/aws-sdk-go/service/cloudformation"
 
+func init() {
+	register("CloudFormationStack", ListCloudFormationStacks)
+}
+
 func ListCloudFormationStacks(sess *session.Session) ([]Resource, error) {
 	resp, err := svc.DescribeStacks(nil)
 	if err != nil {

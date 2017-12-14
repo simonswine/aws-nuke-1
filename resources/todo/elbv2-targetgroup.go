@@ -8,6 +8,10 @@ type ELBv2TargetGroup struct {
 	arn  *string
 }
 
+func init() {
+	register("Elbv2TargetGroup", ListElbv2TargetGroups)
+}
+
 func ListElbv2TargetGroups(sess *session.Session) ([]Resource, error) {
 	resp, err := svc.DescribeTargetGroups(nil)
 	if err != nil {

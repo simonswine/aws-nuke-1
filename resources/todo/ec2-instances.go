@@ -12,6 +12,10 @@ type EC2Instance struct {
 	state string
 }
 
+func init() {
+	register("EC2Instance", ListEC2Instances)
+}
+
 func ListEC2Instances(sess *session.Session) ([]Resource, error) {
 	params := &ec2.DescribeInstancesInput{}
 	resp, err := svc.DescribeInstances(params)

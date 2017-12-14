@@ -10,6 +10,10 @@ type IAMPolicy struct {
 	arn string
 }
 
+func init() {
+	register("IAMPolicie", ListIAMPolicies)
+}
+
 func ListIAMPolicies(sess *session.Session) ([]Resource, error) {
 	resp, err := svc.ListPolicies(&iam.ListPoliciesInput{
 		Scope: aws.String("Local"),

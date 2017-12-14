@@ -12,6 +12,10 @@ type IAMInstanceProfileRole struct {
 	profile string
 }
 
+func init() {
+	register("IAMInstanceProfileRole", ListIAMInstanceProfileRoles)
+}
+
 func ListIAMInstanceProfileRoles(sess *session.Session) ([]Resource, error) {
 	resp, err := svc.ListInstanceProfiles(nil)
 	if err != nil {

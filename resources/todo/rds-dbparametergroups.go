@@ -13,6 +13,10 @@ type RDSDBParameterGroup struct {
 	name *string
 }
 
+func init() {
+	register("RDSParameterGroup", ListRDSParameterGroups)
+}
+
 func ListRDSParameterGroups(sess *session.Session) ([]Resource, error) {
 	params := &rds.DescribeDBParameterGroupsInput{MaxRecords: aws.Int64(100)}
 	resp, err := svc.DescribeDBParameterGroups(params)

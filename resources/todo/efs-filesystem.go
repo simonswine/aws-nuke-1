@@ -8,6 +8,10 @@ type EFSFileSystem struct {
 	name string
 }
 
+func init() {
+	register("EFSFileSystem", ListEFSFileSystems)
+}
+
 func ListEFSFileSystems(sess *session.Session) ([]Resource, error) {
 	resp, err := svc.DescribeFileSystems(nil)
 	if err != nil {

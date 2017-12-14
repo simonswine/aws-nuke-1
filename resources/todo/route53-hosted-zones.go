@@ -6,6 +6,10 @@ import (
 	"github.com/aws/aws-sdk-go/service/route53"
 )
 
+func init() {
+	register("Route53HostedZone", ListRoute53HostedZones)
+}
+
 func ListRoute53HostedZones(sess *session.Session) ([]Resource, error) {
 	params := &route53.ListHostedZonesInput{}
 	resp, err := svc.ListHostedZones(params)

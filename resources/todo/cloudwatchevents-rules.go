@@ -6,6 +6,10 @@ import (
 	"github.com/aws/aws-sdk-go/service/cloudwatchevents"
 )
 
+func init() {
+	register("CloudWatchEventsRule", ListCloudWatchEventsRules)
+}
+
 func ListCloudWatchEventsRules(sess *session.Session) ([]Resource, error) {
 	resp, err := svc.ListRules(nil)
 	if err != nil {

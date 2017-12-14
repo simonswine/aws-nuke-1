@@ -6,6 +6,10 @@ import (
 	"github.com/aws/aws-sdk-go/service/sns"
 )
 
+func init() {
+	register("SNSTopic", ListSNSTopics)
+}
+
 func ListSNSTopics(sess *session.Session) ([]Resource, error) {
 	resp, err := svc.ListTopics(nil)
 	if err != nil {
