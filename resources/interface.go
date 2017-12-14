@@ -9,7 +9,6 @@ type ResourceLister func(s *session.Session) ([]Resource, error)
 type Resource interface {
 	Remove() error
 	String() string
-	TypeName() string
 }
 
 type Filter interface {

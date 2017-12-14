@@ -9,15 +9,6 @@ func init() {
 	register("LaunchConfiguration", ListLaunchConfigurations)
 }
 
-type LaunchConfigurationLister struct{}
-
-func List(s *session) ([]Resource, error) {
-}
-
-func Name() string {
-	return "LaunchConfiguration"
-}
-
 func ListLaunchConfigurations(s *session.Session) ([]Resource, error) {
 	svc := autoscaling.New(s)
 
@@ -40,10 +31,6 @@ func ListLaunchConfigurations(s *session.Session) ([]Resource, error) {
 type LaunchConfiguration struct {
 	svc  *autoscaling.AutoScaling
 	name *string
-}
-
-func (asg *LaunchConfiguration) TypeName() string {
-	return "LaunchConfiguration"
 }
 
 func (launchconfiguration *LaunchConfiguration) Remove() error {

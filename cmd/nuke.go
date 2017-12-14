@@ -213,7 +213,7 @@ func (n *Nuke) Scan() error {
 		sess := n.sessions[region]
 		items := Scan(sess)
 		for item := range items {
-			if !n.Parameters.WantsTarget(item.Service) {
+			if !n.Parameters.WantsTarget(item.Path.Resource) {
 				continue
 			}
 
@@ -242,7 +242,7 @@ func (n *Nuke) Filter(item *Item) {
 		}
 	}
 
-	filters, ok := n.accountConfig.Filters[item.Service]
+	filters, ok := n.accountConfig.Filters[item.Path.Resource]
 	if !ok {
 		return
 	}
@@ -302,15 +302,15 @@ func (n *Nuke) HandleRemove(item *Item) {
 func (n *Nuke) HandleWait(item *Item, cache map[string][]resources.Resource) {
 	var err error
 
-	left, ok := cache[item.Service]
+	left, ok := cache[item.Path.Resource]
 	if !ok {
-		left, err = item.Lister()
+		left, err = item.List()
 		if err != nil {
 			item.State = ItemStateFailed
 			item.Reason = err.Error()
 			return
 		}
-		cache[item.Service] = left
+		cache[item.Path.Resource] = left
 	}
 
 	for _, r := range left {

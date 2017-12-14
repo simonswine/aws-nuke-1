@@ -17,10 +17,10 @@ var (
 	Warning               = *color.New(color.FgYellow)
 )
 
-func Log(reg string, r resources.Resource, c color.Color, msg string) {
-	ColorID.Printf("%s", reg)
+func Log(p Path, r resources.Resource, c color.Color, msg string) {
+	ColorID.Printf("%s", p.Region)
 	fmt.Printf(" - ")
-	fmt.Print(resources.GetCategory(r))
+	fmt.Print(p.Resource)
 	fmt.Printf(" - ")
 	ColorID.Printf("'%s'", r.String())
 	fmt.Printf(" - ")
