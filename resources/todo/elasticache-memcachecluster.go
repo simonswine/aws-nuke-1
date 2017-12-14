@@ -11,7 +11,7 @@ type ElasticacheCacheCluster struct {
 	status    *string
 }
 
-func (n *ElasticacheNuke) ListCacheClusters() ([]Resource, error) {
+func ListElasticacheCacheClusters(sess *session.Session) ([]Resource, error) {
 	params := &elasticache.DescribeCacheClustersInput{MaxRecords: aws.Int64(100)}
 	resp, err := n.Service.DescribeCacheClusters(params)
 	if err != nil {

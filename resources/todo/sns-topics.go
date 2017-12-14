@@ -6,7 +6,7 @@ import (
 	"github.com/aws/aws-sdk-go/service/sns"
 )
 
-func (n *SNSNuke) ListTopics() ([]Resource, error) {
+func ListSNSTopics(sess *session.Session) ([]Resource, error) {
 	resp, err := n.Service.ListTopics(nil)
 	if err != nil {
 		return nil, err

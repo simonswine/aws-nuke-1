@@ -12,7 +12,7 @@ type EC2SecurityGroup struct {
 	name *string
 }
 
-func (n *EC2Nuke) ListSecurityGroups() ([]Resource, error) {
+func ListEC2SecurityGroups(sess *session.Session) ([]Resource, error) {
 	params := &ec2.DescribeSecurityGroupsInput{}
 	resp, err := n.Service.DescribeSecurityGroups(params)
 	if err != nil {

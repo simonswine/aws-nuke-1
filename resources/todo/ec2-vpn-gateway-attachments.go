@@ -13,7 +13,7 @@ type EC2VPNGatewayAttachment struct {
 	state string
 }
 
-func (n *EC2Nuke) ListVPNGatewayAttachments() ([]Resource, error) {
+func ListEC2VPNGatewayAttachments(sess *session.Session) ([]Resource, error) {
 
 	resp, err := n.Service.DescribeVpnGateways(nil)
 	if err != nil {

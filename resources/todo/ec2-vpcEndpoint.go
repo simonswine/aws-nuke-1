@@ -7,7 +7,7 @@ type EC2VPCEndpoint struct {
 	id  *string
 }
 
-func (n *EC2Nuke) ListVPCEndpoints() ([]Resource, error) {
+func ListEC2VPCEndpoints(sess *session.Session) ([]Resource, error) {
 	resp, err := n.Service.DescribeVpcEndpoints(nil)
 	if err != nil {
 		return nil, err

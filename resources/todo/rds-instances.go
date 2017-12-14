@@ -10,7 +10,7 @@ type RDSInstance struct {
 	id  string
 }
 
-func (n *RDSNuke) ListInstances() ([]Resource, error) {
+func ListRDSInstances(sess *session.Session) ([]Resource, error) {
 	params := &rds.DescribeDBInstancesInput{}
 	resp, err := n.Service.DescribeDBInstances(params)
 	if err != nil {

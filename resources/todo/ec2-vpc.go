@@ -7,7 +7,7 @@ type EC2VPC struct {
 	id  *string
 }
 
-func (n *EC2Nuke) ListVPCs() ([]Resource, error) {
+func ListEC2VPCs(sess *session.Session) ([]Resource, error) {
 	resp, err := n.Service.DescribeVpcs(nil)
 	if err != nil {
 		return nil, err

@@ -10,7 +10,7 @@ type IAMPolicy struct {
 	arn string
 }
 
-func (n *IAMNuke) ListPolicies() ([]Resource, error) {
+func ListIAMPolicies(sess *session.Session) ([]Resource, error) {
 	resp, err := n.Service.ListPolicies(&iam.ListPoliciesInput{
 		Scope: aws.String("Local"),
 	})

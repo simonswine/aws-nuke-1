@@ -12,7 +12,7 @@ type EC2Instance struct {
 	state string
 }
 
-func (n *EC2Nuke) ListInstances() ([]Resource, error) {
+func ListEC2Instances(sess *session.Session) ([]Resource, error) {
 	params := &ec2.DescribeInstancesInput{}
 	resp, err := n.Service.DescribeInstances(params)
 	if err != nil {

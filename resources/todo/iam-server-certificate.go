@@ -7,7 +7,7 @@ type IAMServerCertificate struct {
 	name string
 }
 
-func (n *IAMNuke) ListServerCertificates() ([]Resource, error) {
+func ListIAMServerCertificates(sess *session.Session) ([]Resource, error) {
 	resp, err := n.Service.ListServerCertificates(nil)
 	if err != nil {
 		return nil, err

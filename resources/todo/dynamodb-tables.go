@@ -10,7 +10,7 @@ type DynamoDBTable struct {
 	id  string
 }
 
-func (n *DynamoDBNuke) ListTables() ([]Resource, error) {
+func ListDynamoDBTables(sess *session.Session) ([]Resource, error) {
 	resp, err := n.Service.ListTables(&dynamodb.ListTablesInput{})
 	if err != nil {
 		return nil, err

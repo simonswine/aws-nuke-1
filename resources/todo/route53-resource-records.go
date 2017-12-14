@@ -14,7 +14,7 @@ type Route53ResourceRecordSet struct {
 	changeId     *string
 }
 
-func (n *Route53Nuke) ListResourceRecords() ([]Resource, error) {
+func ListRoute53ResourceRecords(sess *session.Session) ([]Resource, error) {
 	resources := make([]Resource, 0)
 
 	sub, err := n.ListHostedZones()

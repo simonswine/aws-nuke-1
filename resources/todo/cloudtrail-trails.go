@@ -2,7 +2,7 @@ package resources
 
 import "github.com/aws/aws-sdk-go/service/cloudtrail"
 
-func (n *CloudTrailNuke) ListTrails() ([]Resource, error) {
+func ListCloudTrailTrails(sess *session.Session) ([]Resource, error) {
 	resp, err := n.Service.DescribeTrails(nil)
 	if err != nil {
 		return nil, err

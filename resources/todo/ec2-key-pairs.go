@@ -7,7 +7,7 @@ type EC2KeyPair struct {
 	name string
 }
 
-func (n *EC2Nuke) ListKeyPairs() ([]Resource, error) {
+func ListEC2KeyPairs(sess *session.Session) ([]Resource, error) {
 	resp, err := n.Service.DescribeKeyPairs(nil)
 	if err != nil {
 		return nil, err

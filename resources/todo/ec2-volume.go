@@ -7,7 +7,7 @@ type EC2Volume struct {
 	id  string
 }
 
-func (n *EC2Nuke) ListVolumes() ([]Resource, error) {
+func ListEC2Volumes(sess *session.Session) ([]Resource, error) {
 	resp, err := n.Service.DescribeVolumes(nil)
 	if err != nil {
 		return nil, err

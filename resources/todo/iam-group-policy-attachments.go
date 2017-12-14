@@ -13,7 +13,7 @@ type IAMGroupPolicyAttachment struct {
 	roleName   string
 }
 
-func (n *IAMNuke) ListGroupPolicyAttachments() ([]Resource, error) {
+func ListIAMGroupPolicyAttachments(sess *session.Session) ([]Resource, error) {
 	resp, err := n.Service.ListGroups(nil)
 	if err != nil {
 		return nil, err

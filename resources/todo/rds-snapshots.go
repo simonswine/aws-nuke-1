@@ -11,7 +11,7 @@ type RDSSnapshot struct {
 	status     *string
 }
 
-func (n *RDSNuke) ListSnapshots() ([]Resource, error) {
+func ListRDSSnapshots(sess *session.Session) ([]Resource, error) {
 	params := &rds.DescribeDBSnapshotsInput{MaxRecords: aws.Int64(100)}
 	resp, err := n.Service.DescribeDBSnapshots(params)
 	if err != nil {

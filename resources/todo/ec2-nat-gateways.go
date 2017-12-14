@@ -12,7 +12,7 @@ type EC2NATGateway struct {
 	state string
 }
 
-func (n *EC2Nuke) ListNATGateways() ([]Resource, error) {
+func ListEC2NATGateways(sess *session.Session) ([]Resource, error) {
 	params := &ec2.DescribeNatGatewaysInput{}
 	resp, err := n.Service.DescribeNatGateways(params)
 	if err != nil {

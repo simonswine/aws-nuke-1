@@ -13,7 +13,7 @@ type IAMUserAccessKey struct {
 	status      string
 }
 
-func (n *IAMNuke) ListUserAccessKeys() ([]Resource, error) {
+func ListIAMUserAccessKeys(sess *session.Session) ([]Resource, error) {
 	resp, err := n.Service.ListUsers(nil)
 	if err != nil {
 		return nil, err

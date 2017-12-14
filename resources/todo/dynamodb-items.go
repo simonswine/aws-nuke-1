@@ -13,7 +13,7 @@ type DynamoDBTableItem struct {
 	table Resource
 }
 
-func (n *DynamoDBNuke) ListItems() ([]Resource, error) {
+func ListDynamoDBItems(sess *session.Session) ([]Resource, error) {
 	tables, tablesErr := n.ListTables()
 	if tablesErr != nil {
 		return nil, tablesErr

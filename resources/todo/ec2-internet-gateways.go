@@ -7,7 +7,7 @@ type EC2InternetGateway struct {
 	id  *string
 }
 
-func (n *EC2Nuke) ListInternetGateways() ([]Resource, error) {
+func ListEC2InternetGateways(sess *session.Session) ([]Resource, error) {
 	resp, err := n.Service.DescribeInternetGateways(nil)
 	if err != nil {
 		return nil, err

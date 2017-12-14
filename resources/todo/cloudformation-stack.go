@@ -2,7 +2,7 @@ package resources
 
 import "github.com/aws/aws-sdk-go/service/cloudformation"
 
-func (n *CloudFormationNuke) ListStacks() ([]Resource, error) {
+func ListCloudFormationStacks(sess *session.Session) ([]Resource, error) {
 	resp, err := n.Service.DescribeStacks(nil)
 	if err != nil {
 		return nil, err

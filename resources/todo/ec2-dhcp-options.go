@@ -7,7 +7,7 @@ type EC2DHCPOption struct {
 	id  *string
 }
 
-func (n *EC2Nuke) ListDHCPOptions() ([]Resource, error) {
+func ListEC2DHCPOptions(sess *session.Session) ([]Resource, error) {
 	resp, err := n.Service.DescribeDhcpOptions(nil)
 	if err != nil {
 		return nil, err

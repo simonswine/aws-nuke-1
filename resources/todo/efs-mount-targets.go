@@ -12,7 +12,7 @@ type EFSMountTarget struct {
 	fsid string
 }
 
-func (n *EFSNuke) ListMountTargets() ([]Resource, error) {
+func ListEFSMountTargets(sess *session.Session) ([]Resource, error) {
 	resp, err := n.Service.DescribeFileSystems(nil)
 	if err != nil {
 		return nil, err

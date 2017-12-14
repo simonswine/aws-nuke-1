@@ -12,7 +12,7 @@ type EC2VPNGateway struct {
 	state string
 }
 
-func (n *EC2Nuke) ListVPNGateways() ([]Resource, error) {
+func ListEC2VPNGateways(sess *session.Session) ([]Resource, error) {
 	params := &ec2.DescribeVpnGatewaysInput{}
 	resp, err := n.Service.DescribeVpnGateways(params)
 	if err != nil {

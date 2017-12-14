@@ -12,7 +12,7 @@ type EC2VPNConnection struct {
 	state string
 }
 
-func (n *EC2Nuke) ListVPNConnections() ([]Resource, error) {
+func ListEC2VPNConnections(sess *session.Session) ([]Resource, error) {
 	params := &ec2.DescribeVpnConnectionsInput{}
 	resp, err := n.Service.DescribeVpnConnections(params)
 	if err != nil {

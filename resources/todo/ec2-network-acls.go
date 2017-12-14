@@ -12,7 +12,7 @@ type EC2NetworkACL struct {
 	isDefault *bool
 }
 
-func (n *EC2Nuke) ListNetworkACLs() ([]Resource, error) {
+func ListEC2NetworkACLs(sess *session.Session) ([]Resource, error) {
 	resp, err := n.Service.DescribeNetworkAcls(nil)
 	if err != nil {
 		return nil, err

@@ -7,7 +7,7 @@ type LambdaFunction struct {
 	functionName *string
 }
 
-func (n *LambdaNuke) ListFunctions() ([]Resource, error) {
+func ListLambdaFunctions(sess *session.Session) ([]Resource, error) {
 	params := &lambda.ListFunctionsInput{}
 	resp, err := n.Service.ListFunctions(params)
 	if err != nil {

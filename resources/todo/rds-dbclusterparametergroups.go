@@ -13,7 +13,7 @@ type RDSDBClusterParameterGroup struct {
 	name *string
 }
 
-func (n *RDSNuke) ListClusterParameterGroups() ([]Resource, error) {
+func ListRDSClusterParameterGroups(sess *session.Session) ([]Resource, error) {
 	params := &rds.DescribeDBClusterParameterGroupsInput{MaxRecords: aws.Int64(100)}
 	resp, err := n.Service.DescribeDBClusterParameterGroups(params)
 	if err != nil {

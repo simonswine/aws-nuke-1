@@ -10,7 +10,7 @@ type RDSDBCluster struct {
 	id  string
 }
 
-func (n *RDSNuke) ListClusters() ([]Resource, error) {
+func ListRDSClusters(sess *session.Session) ([]Resource, error) {
 	params := &rds.DescribeDBClustersInput{}
 	resp, err := n.Service.DescribeDBClusters(params)
 	if err != nil {

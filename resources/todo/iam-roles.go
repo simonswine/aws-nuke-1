@@ -13,7 +13,7 @@ type IAMRole struct {
 	path string
 }
 
-func (n *IAMNuke) ListRoles() ([]Resource, error) {
+func ListIAMRoles(sess *session.Session) ([]Resource, error) {
 	resp, err := n.Service.ListRoles(nil)
 	if err != nil {
 		return nil, err

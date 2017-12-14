@@ -6,7 +6,7 @@ import (
 	"github.com/aws/aws-sdk-go/service/cloudwatchevents"
 )
 
-func (n *CloudWatchEventsNuke) ListRules() ([]Resource, error) {
+func ListCloudWatchEventsRules(sess *session.Session) ([]Resource, error) {
 	resp, err := n.Service.ListRules(nil)
 	if err != nil {
 		return nil, err

@@ -12,7 +12,7 @@ type IAMInstanceProfileRole struct {
 	profile string
 }
 
-func (n *IAMNuke) ListInstanceProfileRoles() ([]Resource, error) {
+func ListIAMInstanceProfileRoles(sess *session.Session) ([]Resource, error) {
 	resp, err := n.Service.ListInstanceProfiles(nil)
 	if err != nil {
 		return nil, err

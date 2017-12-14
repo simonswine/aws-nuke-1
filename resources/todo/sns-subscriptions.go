@@ -6,7 +6,7 @@ import (
 	"github.com/aws/aws-sdk-go/service/sns"
 )
 
-func (n *SNSNuke) ListSubscriptions() ([]Resource, error) {
+func ListSNSSubscriptions(sess *session.Session) ([]Resource, error) {
 	resp, err := n.Service.ListSubscriptions(nil)
 	if err != nil {
 		return nil, err

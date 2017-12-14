@@ -14,7 +14,7 @@ type IAMRolePolicyAttachment struct {
 	roleName   string
 }
 
-func (n *IAMNuke) ListRolePolicyAttachments() ([]Resource, error) {
+func ListIAMRolePolicyAttachments(sess *session.Session) ([]Resource, error) {
 	resp, err := n.Service.ListRoles(nil)
 	if err != nil {
 		return nil, err

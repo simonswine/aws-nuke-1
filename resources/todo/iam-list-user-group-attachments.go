@@ -12,7 +12,7 @@ type IAMUserGroupAttachment struct {
 	userName  string
 }
 
-func (n *IAMNuke) ListUserGroupAttachments() ([]Resource, error) {
+func ListIAMUserGroupAttachments(sess *session.Session) ([]Resource, error) {
 	resp, err := n.Service.ListUsers(nil)
 	if err != nil {
 		return nil, err

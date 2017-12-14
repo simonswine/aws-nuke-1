@@ -12,7 +12,7 @@ type EC2CustomerGateway struct {
 	state string
 }
 
-func (n *EC2Nuke) ListCustomerGateways() ([]Resource, error) {
+func ListEC2CustomerGateways(sess *session.Session) ([]Resource, error) {
 	params := &ec2.DescribeCustomerGatewaysInput{}
 	resp, err := n.Service.DescribeCustomerGateways(params)
 	if err != nil {

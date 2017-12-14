@@ -12,7 +12,7 @@ type S3Object struct {
 	key    string
 }
 
-func (n *S3Nuke) ListObjects() ([]Resource, error) {
+func ListS3Objects(sess *session.Session) ([]Resource, error) {
 	resources := make([]Resource, 0)
 
 	buckets, err := n.DescribeBuckets()

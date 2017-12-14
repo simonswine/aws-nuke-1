@@ -6,7 +6,7 @@ import (
 	"github.com/aws/aws-sdk-go/service/route53"
 )
 
-func (n *Route53Nuke) ListHostedZones() ([]Resource, error) {
+func ListRoute53HostedZones(sess *session.Session) ([]Resource, error) {
 	params := &route53.ListHostedZonesInput{}
 	resp, err := n.Service.ListHostedZones(params)
 	if err != nil {

@@ -7,7 +7,7 @@ type IAMGroup struct {
 	name string
 }
 
-func (n *IAMNuke) ListGroups() ([]Resource, error) {
+func ListIAMGroups(sess *session.Session) ([]Resource, error) {
 	resp, err := n.Service.ListGroups(nil)
 	if err != nil {
 		return nil, err

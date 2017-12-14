@@ -15,7 +15,7 @@ type KMSKey struct {
 	alias string
 }
 
-func (n *KMSNuke) ListKeys() ([]Resource, error) {
+func ListKMSKeys(sess *session.Session) ([]Resource, error) {
 	respAlias, err := n.Service.ListAliases(nil)
 	if err != nil {
 		return nil, err

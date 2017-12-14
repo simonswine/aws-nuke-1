@@ -8,7 +8,7 @@ type EC2Address struct {
 	ip  string
 }
 
-func (n *EC2Nuke) ListAddresses() ([]Resource, error) {
+func ListEC2Addresses(sess *session.Session) ([]Resource, error) {
 	params := &ec2.DescribeAddressesInput{}
 	resp, err := n.Service.DescribeAddresses(params)
 	if err != nil {

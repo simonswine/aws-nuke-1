@@ -7,7 +7,7 @@ type EC2Subnet struct {
 	id  *string
 }
 
-func (n *EC2Nuke) ListSubnets() ([]Resource, error) {
+func ListEC2Subnets(sess *session.Session) ([]Resource, error) {
 	params := &ec2.DescribeSubnetsInput{}
 	resp, err := n.Service.DescribeSubnets(params)
 	if err != nil {

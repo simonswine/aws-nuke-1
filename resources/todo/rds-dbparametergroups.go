@@ -13,7 +13,7 @@ type RDSDBParameterGroup struct {
 	name *string
 }
 
-func (n *RDSNuke) ListParameterGroups() ([]Resource, error) {
+func ListRDSParameterGroups(sess *session.Session) ([]Resource, error) {
 	params := &rds.DescribeDBParameterGroupsInput{MaxRecords: aws.Int64(100)}
 	resp, err := n.Service.DescribeDBParameterGroups(params)
 	if err != nil {

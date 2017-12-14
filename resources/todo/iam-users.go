@@ -7,7 +7,7 @@ type IAMUser struct {
 	name string
 }
 
-func (n *IAMNuke) ListUsers() ([]Resource, error) {
+func ListIAMUsers(sess *session.Session) ([]Resource, error) {
 	resp, err := n.Service.ListUsers(nil)
 	if err != nil {
 		return nil, err

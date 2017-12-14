@@ -12,7 +12,7 @@ type KMSAlias struct {
 	name string
 }
 
-func (n *KMSNuke) ListAliases() ([]Resource, error) {
+func ListKMSAliases(sess *session.Session) ([]Resource, error) {
 	resp, err := n.Service.ListAliases(nil)
 	if err != nil {
 		return nil, err

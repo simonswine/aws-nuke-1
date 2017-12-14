@@ -8,7 +8,7 @@ type ELBv2 struct {
 	arn  *string
 }
 
-func (n *Elbv2Nuke) ListELBs() ([]Resource, error) {
+func ListElbv2ELBs(sess *session.Session) ([]Resource, error) {
 	resp, err := n.Service.DescribeLoadBalancers(nil)
 	if err != nil {
 		return nil, err

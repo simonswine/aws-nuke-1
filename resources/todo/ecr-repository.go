@@ -12,7 +12,7 @@ type ECRRepository struct {
 	name *string
 }
 
-func (n *ECRNuke) ListRepos() ([]Resource, error) {
+func ListECRRepos(sess *session.Session) ([]Resource, error) {
 	var params *ecr.DescribeRepositoriesInput
 	var resp *ecr.DescribeRepositoriesOutput
 	var resources []Resource

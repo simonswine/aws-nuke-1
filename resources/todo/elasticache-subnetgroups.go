@@ -10,7 +10,7 @@ type ElasticacheSubnetGroup struct {
 	name *string
 }
 
-func (n *ElasticacheNuke) ListSubnetGroups() ([]Resource, error) {
+func ListElasticacheSubnetGroups(sess *session.Session) ([]Resource, error) {
 	params := &elasticache.DescribeCacheSubnetGroupsInput{MaxRecords: aws.Int64(100)}
 	resp, err := n.Service.DescribeCacheSubnetGroups(params)
 	if err != nil {

@@ -13,7 +13,7 @@ type EC2SpotFleetRequest struct {
 	state string
 }
 
-func (n *EC2Nuke) ListSpotFleetRequests() ([]Resource, error) {
+func ListEC2SpotFleetRequests(sess *session.Session) ([]Resource, error) {
 	resp, err := n.Service.DescribeSpotFleetRequests(nil)
 	if err != nil {
 		return nil, err

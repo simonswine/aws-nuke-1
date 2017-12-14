@@ -7,7 +7,7 @@ type ELB struct {
 	name *string
 }
 
-func (n *ElbNuke) ListELBs() ([]Resource, error) {
+func ListElbELBs(sess *session.Session) ([]Resource, error) {
 	resp, err := n.Service.DescribeLoadBalancers(nil)
 	if err != nil {
 		return nil, err

@@ -8,7 +8,7 @@ type EFSFileSystem struct {
 	name string
 }
 
-func (n *EFSNuke) ListFileSystems() ([]Resource, error) {
+func ListEFSFileSystems(sess *session.Session) ([]Resource, error) {
 	resp, err := n.Service.DescribeFileSystems(nil)
 	if err != nil {
 		return nil, err

@@ -7,7 +7,7 @@ type IAMInstanceProfile struct {
 	name string
 }
 
-func (n *IAMNuke) ListInstanceProfiles() ([]Resource, error) {
+func ListIAMInstanceProfiles(sess *session.Session) ([]Resource, error) {
 	resp, err := n.Service.ListInstanceProfiles(nil)
 	if err != nil {
 		return nil, err

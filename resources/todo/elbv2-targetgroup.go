@@ -8,7 +8,7 @@ type ELBv2TargetGroup struct {
 	arn  *string
 }
 
-func (n *Elbv2Nuke) ListTargetGroups() ([]Resource, error) {
+func ListElbv2TargetGroups(sess *session.Session) ([]Resource, error) {
 	resp, err := n.Service.DescribeTargetGroups(nil)
 	if err != nil {
 		return nil, err

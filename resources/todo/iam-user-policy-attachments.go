@@ -13,7 +13,7 @@ type IAMUserPolicyAttachment struct {
 	roleName   string
 }
 
-func (n *IAMNuke) ListUserPolicyAttachments() ([]Resource, error) {
+func ListIAMUserPolicyAttachments(sess *session.Session) ([]Resource, error) {
 	resp, err := n.Service.ListUsers(nil)
 	if err != nil {
 		return nil, err

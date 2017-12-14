@@ -13,7 +13,7 @@ type EC2InternetGatewayAttachment struct {
 	igwId *string
 }
 
-func (n *EC2Nuke) ListInternetGatewayAttachments() ([]Resource, error) {
+func ListEC2InternetGatewayAttachments(sess *session.Session) ([]Resource, error) {
 	resp, err := n.Service.DescribeVpcs(nil)
 	if err != nil {
 		return nil, err

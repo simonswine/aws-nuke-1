@@ -10,7 +10,7 @@ type RDSDBSubnetGroup struct {
 	name *string
 }
 
-func (n *RDSNuke) ListSubnetGroups() ([]Resource, error) {
+func ListRDSSubnetGroups(sess *session.Session) ([]Resource, error) {
 	params := &rds.DescribeDBSubnetGroupsInput{MaxRecords: aws.Int64(100)}
 	resp, err := n.Service.DescribeDBSubnetGroups(params)
 	if err != nil {

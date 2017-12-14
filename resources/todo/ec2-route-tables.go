@@ -7,7 +7,7 @@ type EC2RouteTable struct {
 	id  *string
 }
 
-func (n *EC2Nuke) ListRouteTables() ([]Resource, error) {
+func ListEC2RouteTables(sess *session.Session) ([]Resource, error) {
 	resp, err := n.Service.DescribeRouteTables(nil)
 	if err != nil {
 		return nil, err
