@@ -10,6 +10,8 @@ func init() {
 }
 
 func ListCloudFormationStacks(sess *session.Session) ([]Resource, error) {
+	svc := cloudformation.New(sess)
+
 	resp, err := svc.DescribeStacks(nil)
 	if err != nil {
 		return nil, err

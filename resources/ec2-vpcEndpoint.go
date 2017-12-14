@@ -15,6 +15,8 @@ func init() {
 }
 
 func ListEC2VPCEndpoints(sess *session.Session) ([]Resource, error) {
+	svc := ec2.New(sess)
+
 	resp, err := svc.DescribeVpcEndpoints(nil)
 	if err != nil {
 		return nil, err

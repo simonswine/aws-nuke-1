@@ -21,6 +21,8 @@ func init() {
 }
 
 func ListKMSKeys(sess *session.Session) ([]Resource, error) {
+	svc := kms.New(sess)
+
 	respAlias, err := svc.ListAliases(nil)
 	if err != nil {
 		return nil, err

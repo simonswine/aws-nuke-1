@@ -15,6 +15,8 @@ func init() {
 }
 
 func ListEC2RouteTables(sess *session.Session) ([]Resource, error) {
+	svc := ec2.New(sess)
+
 	resp, err := svc.DescribeRouteTables(nil)
 	if err != nil {
 		return nil, err

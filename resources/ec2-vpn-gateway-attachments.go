@@ -19,6 +19,7 @@ func init() {
 }
 
 func ListEC2VPNGatewayAttachments(sess *session.Session) ([]Resource, error) {
+	svc := ec2.New(sess)
 
 	resp, err := svc.DescribeVpnGateways(nil)
 	if err != nil {

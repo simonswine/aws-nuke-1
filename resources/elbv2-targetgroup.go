@@ -16,6 +16,8 @@ func init() {
 }
 
 func ListElbv2TargetGroups(sess *session.Session) ([]Resource, error) {
+	svc := elbv2.New(sess)
+
 	resp, err := svc.DescribeTargetGroups(nil)
 	if err != nil {
 		return nil, err

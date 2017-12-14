@@ -19,6 +19,8 @@ func init() {
 }
 
 func ListIAMRoles(sess *session.Session) ([]Resource, error) {
+	svc := iam.New(sess)
+
 	resp, err := svc.ListRoles(nil)
 	if err != nil {
 		return nil, err

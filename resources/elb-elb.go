@@ -15,6 +15,8 @@ func init() {
 }
 
 func ListElbELBs(sess *session.Session) ([]Resource, error) {
+	svc := elb.New(sess)
+
 	resp, err := svc.DescribeLoadBalancers(nil)
 	if err != nil {
 		return nil, err

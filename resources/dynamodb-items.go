@@ -19,7 +19,9 @@ func init() {
 }
 
 func ListDynamoDBItems(sess *session.Session) ([]Resource, error) {
-	tables, tablesErr := n.ListTables()
+	svc := dynamodb.New(sess)
+
+	tables, tablesErr := ListDynamoDBTables(sess)
 	if tablesErr != nil {
 		return nil, tablesErr
 	}

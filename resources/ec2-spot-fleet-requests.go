@@ -19,6 +19,8 @@ func init() {
 }
 
 func ListEC2SpotFleetRequests(sess *session.Session) ([]Resource, error) {
+	svc := ec2.New(sess)
+
 	resp, err := svc.DescribeSpotFleetRequests(nil)
 	if err != nil {
 		return nil, err

@@ -19,6 +19,8 @@ func init() {
 }
 
 func ListRDSParameterGroups(sess *session.Session) ([]Resource, error) {
+	svc := rds.New(sess)
+
 	params := &rds.DescribeDBParameterGroupsInput{MaxRecords: aws.Int64(100)}
 	resp, err := svc.DescribeDBParameterGroups(params)
 	if err != nil {

@@ -18,9 +18,11 @@ func init() {
 }
 
 func ListS3Objects(sess *session.Session) ([]Resource, error) {
+	svc := s3.New(sess)
+
 	resources := make([]Resource, 0)
 
-	buckets, err := n.DescribeBuckets()
+	buckets, err := DescribeS3Buckets(svc)
 	if err != nil {
 		return nil, err
 	}

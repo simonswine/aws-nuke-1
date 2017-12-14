@@ -19,6 +19,8 @@ func init() {
 }
 
 func ListEC2InternetGatewayAttachments(sess *session.Session) ([]Resource, error) {
+	svc := ec2.New(sess)
+
 	resp, err := svc.DescribeVpcs(nil)
 	if err != nil {
 		return nil, err

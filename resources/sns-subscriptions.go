@@ -12,6 +12,8 @@ func init() {
 }
 
 func ListSNSSubscriptions(sess *session.Session) ([]Resource, error) {
+	svc := sns.New(sess)
+
 	resp, err := svc.ListSubscriptions(nil)
 	if err != nil {
 		return nil, err

@@ -16,6 +16,8 @@ func init() {
 }
 
 func ListRDSClusters(sess *session.Session) ([]Resource, error) {
+	svc := rds.New(sess)
+
 	params := &rds.DescribeDBClustersInput{}
 	resp, err := svc.DescribeDBClusters(params)
 	if err != nil {

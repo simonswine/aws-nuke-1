@@ -18,6 +18,8 @@ func init() {
 }
 
 func ListEC2SecurityGroups(sess *session.Session) ([]Resource, error) {
+	svc := ec2.New(sess)
+
 	params := &ec2.DescribeSecurityGroupsInput{}
 	resp, err := svc.DescribeSecurityGroups(params)
 	if err != nil {

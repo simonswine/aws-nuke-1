@@ -16,6 +16,8 @@ func init() {
 }
 
 func ListIAMPolicies(sess *session.Session) ([]Resource, error) {
+	svc := iam.New(sess)
+
 	resp, err := svc.ListPolicies(&iam.ListPoliciesInput{
 		Scope: aws.String("Local"),
 	})

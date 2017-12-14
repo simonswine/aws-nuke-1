@@ -18,6 +18,8 @@ func init() {
 }
 
 func ListEC2NetworkACLs(sess *session.Session) ([]Resource, error) {
+	svc := ec2.New(sess)
+
 	resp, err := svc.DescribeNetworkAcls(nil)
 	if err != nil {
 		return nil, err

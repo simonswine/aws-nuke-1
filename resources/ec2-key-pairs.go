@@ -15,6 +15,8 @@ func init() {
 }
 
 func ListEC2KeyPairs(sess *session.Session) ([]Resource, error) {
+	svc := ec2.New(sess)
+
 	resp, err := svc.DescribeKeyPairs(nil)
 	if err != nil {
 		return nil, err

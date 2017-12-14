@@ -16,6 +16,8 @@ func init() {
 }
 
 func ListEFSFileSystems(sess *session.Session) ([]Resource, error) {
+	svc := efs.New(sess)
+
 	resp, err := svc.DescribeFileSystems(nil)
 	if err != nil {
 		return nil, err

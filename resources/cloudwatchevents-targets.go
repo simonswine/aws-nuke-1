@@ -12,6 +12,8 @@ func init() {
 }
 
 func ListCloudWatchEventsTargets(sess *session.Session) ([]Resource, error) {
+	svc := cloudwatchevents.New(sess)
+
 	resp, err := svc.ListRules(nil)
 	if err != nil {
 		return nil, err

@@ -18,6 +18,8 @@ func init() {
 }
 
 func ListIAMUserGroupAttachments(sess *session.Session) ([]Resource, error) {
+	svc := iam.New(sess)
+
 	resp, err := svc.ListUsers(nil)
 	if err != nil {
 		return nil, err

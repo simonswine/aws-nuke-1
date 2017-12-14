@@ -18,6 +18,8 @@ func init() {
 }
 
 func ListEC2CustomerGateways(sess *session.Session) ([]Resource, error) {
+	svc := ec2.New(sess)
+
 	params := &ec2.DescribeCustomerGatewaysInput{}
 	resp, err := svc.DescribeCustomerGateways(params)
 	if err != nil {

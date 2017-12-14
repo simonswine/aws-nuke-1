@@ -18,6 +18,8 @@ func init() {
 }
 
 func ListEC2Instances(sess *session.Session) ([]Resource, error) {
+	svc := ec2.New(sess)
+
 	params := &ec2.DescribeInstancesInput{}
 	resp, err := svc.DescribeInstances(params)
 	if err != nil {

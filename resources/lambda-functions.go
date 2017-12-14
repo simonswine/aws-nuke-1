@@ -15,6 +15,8 @@ func init() {
 }
 
 func ListLambdaFunctions(sess *session.Session) ([]Resource, error) {
+	svc := lambda.New(sess)
+
 	params := &lambda.ListFunctionsInput{}
 	resp, err := svc.ListFunctions(params)
 	if err != nil {

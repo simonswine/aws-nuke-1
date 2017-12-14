@@ -16,6 +16,8 @@ func init() {
 }
 
 func ListEC2Addresses(sess *session.Session) ([]Resource, error) {
+	svc := ec2.New(sess)
+
 	params := &ec2.DescribeAddressesInput{}
 	resp, err := svc.DescribeAddresses(params)
 	if err != nil {

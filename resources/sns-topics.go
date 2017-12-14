@@ -12,6 +12,8 @@ func init() {
 }
 
 func ListSNSTopics(sess *session.Session) ([]Resource, error) {
+	svc := sns.New(sess)
+
 	resp, err := svc.ListTopics(nil)
 	if err != nil {
 		return nil, err

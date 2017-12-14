@@ -16,6 +16,8 @@ func init() {
 }
 
 func ListElasticacheSubnetGroups(sess *session.Session) ([]Resource, error) {
+	svc := elasticache.New(sess)
+
 	params := &elasticache.DescribeCacheSubnetGroupsInput{MaxRecords: aws.Int64(100)}
 	resp, err := svc.DescribeCacheSubnetGroups(params)
 	if err != nil {

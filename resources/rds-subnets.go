@@ -16,6 +16,8 @@ func init() {
 }
 
 func ListRDSSubnetGroups(sess *session.Session) ([]Resource, error) {
+	svc := rds.New(sess)
+
 	params := &rds.DescribeDBSubnetGroupsInput{MaxRecords: aws.Int64(100)}
 	resp, err := svc.DescribeDBSubnetGroups(params)
 	if err != nil {

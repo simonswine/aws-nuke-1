@@ -19,6 +19,8 @@ func init() {
 }
 
 func ListIAMUserPolicyAttachments(sess *session.Session) ([]Resource, error) {
+	svc := iam.New(sess)
+
 	resp, err := svc.ListUsers(nil)
 	if err != nil {
 		return nil, err

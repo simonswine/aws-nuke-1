@@ -18,6 +18,8 @@ func init() {
 }
 
 func ListIAMInstanceProfileRoles(sess *session.Session) ([]Resource, error) {
+	svc := iam.New(sess)
+
 	resp, err := svc.ListInstanceProfiles(nil)
 	if err != nil {
 		return nil, err

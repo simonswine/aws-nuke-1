@@ -16,6 +16,8 @@ func init() {
 }
 
 func ListRDSInstances(sess *session.Session) ([]Resource, error) {
+	svc := rds.New(sess)
+
 	params := &rds.DescribeDBInstancesInput{}
 	resp, err := svc.DescribeDBInstances(params)
 	if err != nil {

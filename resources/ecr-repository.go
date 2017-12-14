@@ -18,6 +18,8 @@ func init() {
 }
 
 func ListECRRepos(sess *session.Session) ([]Resource, error) {
+	svc := ecr.New(sess)
+
 	var params *ecr.DescribeRepositoriesInput
 	var resp *ecr.DescribeRepositoriesOutput
 	var resources []Resource

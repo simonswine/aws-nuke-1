@@ -18,6 +18,8 @@ func init() {
 }
 
 func ListEC2NATGateways(sess *session.Session) ([]Resource, error) {
+	svc := ec2.New(sess)
+
 	params := &ec2.DescribeNatGatewaysInput{}
 	resp, err := svc.DescribeNatGateways(params)
 	if err != nil {

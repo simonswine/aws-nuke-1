@@ -10,6 +10,8 @@ func init() {
 }
 
 func ListCloudTrailTrails(sess *session.Session) ([]Resource, error) {
+	svc := cloudtrail.New(sess)
+
 	resp, err := svc.DescribeTrails(nil)
 	if err != nil {
 		return nil, err

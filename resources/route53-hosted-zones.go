@@ -12,6 +12,8 @@ func init() {
 }
 
 func ListRoute53HostedZones(sess *session.Session) ([]Resource, error) {
+	svc := route53.New(sess)
+
 	params := &route53.ListHostedZonesInput{}
 	resp, err := svc.ListHostedZones(params)
 	if err != nil {

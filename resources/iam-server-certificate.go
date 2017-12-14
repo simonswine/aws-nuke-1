@@ -15,6 +15,8 @@ func init() {
 }
 
 func ListIAMServerCertificates(sess *session.Session) ([]Resource, error) {
+	svc := iam.New(sess)
+
 	resp, err := svc.ListServerCertificates(nil)
 	if err != nil {
 		return nil, err

@@ -17,6 +17,8 @@ func init() {
 }
 
 func ListElasticacheCacheClusters(sess *session.Session) ([]Resource, error) {
+	svc := elasticache.New(sess)
+
 	params := &elasticache.DescribeCacheClustersInput{MaxRecords: aws.Int64(100)}
 	resp, err := svc.DescribeCacheClusters(params)
 	if err != nil {

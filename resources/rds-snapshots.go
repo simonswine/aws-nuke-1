@@ -17,6 +17,8 @@ func init() {
 }
 
 func ListRDSSnapshots(sess *session.Session) ([]Resource, error) {
+	svc := rds.New(sess)
+
 	params := &rds.DescribeDBSnapshotsInput{MaxRecords: aws.Int64(100)}
 	resp, err := svc.DescribeDBSnapshots(params)
 	if err != nil {

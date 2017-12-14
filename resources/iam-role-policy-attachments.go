@@ -20,6 +20,8 @@ func init() {
 }
 
 func ListIAMRolePolicyAttachments(sess *session.Session) ([]Resource, error) {
+	svc := iam.New(sess)
+
 	resp, err := svc.ListRoles(nil)
 	if err != nil {
 		return nil, err

@@ -15,6 +15,8 @@ func init() {
 }
 
 func ListIAMGroups(sess *session.Session) ([]Resource, error) {
+	svc := iam.New(sess)
+
 	resp, err := svc.ListGroups(nil)
 	if err != nil {
 		return nil, err

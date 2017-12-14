@@ -15,6 +15,8 @@ func init() {
 }
 
 func ListEC2Subnets(sess *session.Session) ([]Resource, error) {
+	svc := ec2.New(sess)
+
 	params := &ec2.DescribeSubnetsInput{}
 	resp, err := svc.DescribeSubnets(params)
 	if err != nil {

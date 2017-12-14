@@ -18,6 +18,8 @@ func init() {
 }
 
 func ListKMSAliases(sess *session.Session) ([]Resource, error) {
+	svc := kms.New(sess)
+
 	resp, err := svc.ListAliases(nil)
 	if err != nil {
 		return nil, err

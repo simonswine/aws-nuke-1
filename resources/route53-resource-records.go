@@ -20,16 +20,18 @@ func init() {
 }
 
 func ListRoute53ResourceRecords(sess *session.Session) ([]Resource, error) {
+	svc := route53.New(sess)
+
 	resources := make([]Resource, 0)
 
-	sub, err := n.ListHostedZones()
+	sub, err := ListRoute53HostedZones(sess)
 	if err != nil {
 		return nil, err
 	}
 
 	for _, resource := range sub {
 		zone := resource.(*Route53HostedZone)
-		rrs, err := n.ListResourceRecordsForZone(zone.id)
+		rrs, err := ListResourceRecordsForZone(svc, zone.id)
 		if err != nil {
 			return nil, err
 		}
@@ -40,7 +42,7 @@ func ListRoute53ResourceRecords(sess *session.Session) ([]Resource, error) {
 	return resources, nil
 }
 
-func (n *Route53Nuke) ListResourceRecordsForZone(zoneId *string) ([]Resource, error) {
+func ListResourceRecordsForZone(svc *route53.Route53, zoneId *string) ([]Resource, error) {
 	params := &route53.ListResourceRecordSetsInput{
 		HostedZoneId: zoneId,
 	}

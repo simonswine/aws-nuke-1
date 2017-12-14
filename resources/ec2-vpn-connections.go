@@ -18,6 +18,8 @@ func init() {
 }
 
 func ListEC2VPNConnections(sess *session.Session) ([]Resource, error) {
+	svc := ec2.New(sess)
+
 	params := &ec2.DescribeVpnConnectionsInput{}
 	resp, err := svc.DescribeVpnConnections(params)
 	if err != nil {
